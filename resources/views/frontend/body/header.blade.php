@@ -1,11 +1,13 @@
 <!-- Header  -->
 <header class="header-area header-style-1 header-height-2">
-
+    @php
+    $setting = App\Models\SiteSetting::find(1);
+    @endphp
     <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
         <div class="container">
             <div class="header-wrap">
                 <div class="logo logo-width-1">
-                    <a href="index.html"><img src="{{ asset('frontend/assets/imgs/theme/logo.webp') }}" alt="logo" /></a>
+                    <a href="index.html"><img src="{{  asset($setting->logo)    }}" alt="logo" /></a>
                 </div>
                 @php
                 $categories = App\Models\Category::orderBy('category_name','ASC')->get();
@@ -338,7 +340,7 @@
 
                 <div class="hotline d-none d-lg-flex">
                     <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-headphone.svg') }}" alt="hotline" />
-                    <p>1900 - 888<span>24/7 Support Center</span></p>
+                    <p>{{ $setting->support_phone }}<span>24/7 Support Center</span></p>
                 </div>
                 <div class="header-action-icon-2 d-block d-lg-none">
                     <div class="burger-icon burger-icon-white">
@@ -408,7 +410,7 @@
 <!-- End Header  -->
 
 <style>
-    #searchProducts{
+    #searchProducts {
         position: absolute;
         top: 100%;
         left: 0;
@@ -421,10 +423,11 @@
 </style>
 
 <script>
-    function search_result_show(){
+    function search_result_show() {
         $("#searchProducts").slideDown();
     }
-    function search_result_hide(){
+
+    function search_result_hide() {
         $("#searchProducts").slideUp();
     }
 </script>
@@ -436,7 +439,7 @@
     <div class="mobile-header-wrapper-inner">
         <div class="mobile-header-top">
             <div class="mobile-header-logo">
-                <a href="index.html"><img src="{{ asset('frontend/assets/imgs/theme/logo.svg') }}" alt="logo" /></a>
+                <a href="index.html"><img src="{{ asset($setting->logo)  }}" alt="logo" /></a>
             </div>
             <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
                 <button class="close-style search-close">

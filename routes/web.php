@@ -20,6 +20,7 @@ use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\ActiveUserController;
 use App\Http\Controllers\Backend\BlogController;
@@ -332,6 +333,18 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/review/delete/{id}', 'ReviewDelete')->name('review.delete');
     });
 
+    // Site Setting All Route 
+    Route::controller(SiteSettingController::class)->group(function () {
+
+        Route::get('/site/setting', 'SiteSetting')->name('site.setting');
+        Route::post('/site/setting/update', 'SiteSettingUpdate')->name('site.setting.update');
+        
+        Route::get('/seo/setting' , 'SeoSetting')->name('seo.setting');
+        Route::post('/seo/setting/update' , 'SeoSettingUpdate')->name('seo.setting.update');
+    });
+
+
+
 
     // Active user and vendor All Route 
     Route::controller(ActiveUserController::class)->group(function () {
@@ -449,9 +462,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     // Search All Route 
     Route::controller(IndexController::class)->group(function () {
 
-        Route::post('/search' , 'ProductSearch')->name('product.search');
-        Route::post('/search-product' , 'SearchProduct'); 
-       
+        Route::post('/search', 'ProductSearch')->name('product.search');
+        Route::post('/search-product', 'SearchProduct');
     });
 
 

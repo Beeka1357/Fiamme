@@ -21,7 +21,7 @@ $customer = App\Models\User::where('status','active')->where('role','user')->get
             <div class="card radius-10 bg-gradient-deepblue">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
-                        <h5 class="mb-0 text-white">${{ $today }}INR</h5>
+                        <h5 class="mb-0 text-white">₹{{ $today }}INR</h5>
                         <div class="ms-auto">
                             <i class='bx bx-cart fs-3 text-white'></i>
                         </div>

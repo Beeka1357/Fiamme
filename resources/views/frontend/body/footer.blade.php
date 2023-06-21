@@ -1,3 +1,7 @@
+@php
+$setting = App\Models\SiteSetting::find(1);
+@endphp
+
 <footer class="main">
     <section class="newsletter mb-15 wow animate__animated animate__fadeIn">
         <div class="container">
@@ -99,13 +103,13 @@
                 <div class="col">
                     <div class="widget-about font-md mb-md-3 mb-lg-3 mb-xl-0 wow animate__animated animate__fadeInUp" data-wow-delay="0">
                         <div class="logo mb-30">
-                            <a href="index.html" class="mb-15"><img src="{{ asset('frontend/assets/imgs/theme/logo.webp') }}" alt="logo" /></a>
-                            <p class="font-lg text-heading">Awesome grocery store website template</p>
+                            <a href="index.html" class="mb-15"><img src="{{ asset($setting->logo ) }}" alt="logo" /></a>
+                            <p class="font-lg text-heading">Fiamme Lingerie store </p>
                         </div>
                         <ul class="contact-infor">
-                            <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg') }}" alt="" /><strong>Address: </strong> <span>Noida</span></li>
-                            <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg') }}" alt="" /><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
-                            <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-email-2.svg') }}" alt="" /><strong>Email:</strong><span>sale@Fiamme.com</span></li>
+                            <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg') }}" alt="" /><strong>Address: </strong> <span> {{ $setting->company_address }} </span></li>
+                            <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg') }}" alt="" /><strong>Call Us:</strong><span>{{ $setting->phone_one }}</span></li>
+                            <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-email-2.svg') }}" alt="" /><strong>Email:</strong><span>{{ $setting->email }}</span></li>
                             <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-clock.svg') }}" alt="" /><strong>Hours:</strong><span>10:00 - 18:00, Mon - Sat</span></li>
                         </ul>
                     </div>
@@ -128,7 +132,7 @@
                         <li><a href="#">Sign In</a></li>
                         <li><a href="#">View Cart</a></li>
                         <li><a href="#">My Wishlist</a></li>
-                        <li><a href="#">Track My Order</a></li>
+                        <li><a href="{{ route('user.track.order') }}">Track My Order</a></li>
                         <li><a href="#">Help Ticket</a></li>
                         <li><a href="#">Shipping Details</a></li>
                         <li><a href="#">Compare products</a></li>
@@ -167,23 +171,23 @@
                 <div class="footer-bottom"></div>
             </div>
             <div class="col-xl-4 col-lg-6 col-md-6">
-                <p class="font-sm mb-0">&copy; 2023, <strong class="text-brand">FIAMME</strong> <br />All rights reserved</p>
+                <p class="font-sm mb-0">  <strong class="text-brand">Fiamme</strong> - {{ $setting->copyright }}</p>
             </div>
             <div class="col-xl-4 col-lg-6 text-center d-none d-xl-block">
 
                 <div class="hotline d-lg-inline-flex">
                     <img src="{{ asset('frontend/assets/imgs/theme/icons/phone-call.svg') }}" alt="hotline" />
-                    <p>1900 - 8888<span>24/7 Support Center</span></p>
+                    <p>{{ $setting->support_phone }}<span>24/7 Support Center</span></p>
                 </div>
             </div>
             <div class="col-xl-4 col-lg-6 col-md-6 text-end d-none d-md-block">
                 <div class="mobile-social-icon">
                     <h6>Follow Us</h6>
-                    <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-facebook-white.svg') }}" alt="" /></a>
-                    <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-twitter-white.svg') }}" alt="" /></a>
+                    <a href="{{ $setting->facebook }}"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-facebook-white.svg') }}" alt="" /></a>
+                    <a href="{{ $setting->twitter }}"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-twitter-white.svg') }}" alt="" /></a>
                     <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-instagram-white.svg') }}" alt="" /></a>
                     <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-pinterest-white.svg') }}" alt="" /></a>
-                    <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-youtube-white.svg') }}" alt="" /></a>
+                    <a href="{{ $setting->youtube }}"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-youtube-white.svg') }}" alt="" /></a>
                 </div>
                 <p class="font-sm">Up to 15% discount on your first subscribe</p>
             </div>
