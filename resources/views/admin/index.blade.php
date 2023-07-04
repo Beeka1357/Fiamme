@@ -42,7 +42,7 @@ $customer = App\Models\User::where('status','active')->where('role','user')->get
                     <div class="d-flex align-items-center">
                         <h5 class="mb-0 text-white">₹{{ $month }}INR</h5>
                         <div class="ms-auto">
-                            <i class='bx bx-dollar fs-3 text-white'></i>
+                            <i class='bx bx-rupee fs-3 text-white'></i>
                         </div>
                     </div>
                     <div class="progress my-3 bg-light-transparent" style="height:3px;">

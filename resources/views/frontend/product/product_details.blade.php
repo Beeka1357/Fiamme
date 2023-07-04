@@ -390,7 +390,7 @@
                                 @endforeach
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <!-- <div class="col-lg-4">
                             <h4 class="mb-30">Customer reviews</h4>
                             <div class="d-flex mb-30">
                                 <div class="product-rate d-inline-block mr-15">
@@ -419,7 +419,7 @@
                                 <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
                             </div>
                             <a href="#" class="font-xs text-muted">How are ratings calculated?</a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <!--comment form-->

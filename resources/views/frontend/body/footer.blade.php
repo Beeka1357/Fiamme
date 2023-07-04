@@ -13,7 +13,7 @@ $setting = App\Models\SiteSetting::find(1);
                                 Stay home & get your daily <br />
                                 needs from our shop
                             </h2>
-                            <p class="mb-45">Start You'r Daily Shopping with <span class="text-brand">Nest Mart</span></p>
+                            <p class="mb-45">Start You'r Daily Shopping with <span class="text-brand">Fiamme</span></p>
                             <form class="form-subcriber d-flex">
                                 <input type="email" placeholder="Your emaill address" />
                                 <button class="btn" type="submit">Subscribe</button>

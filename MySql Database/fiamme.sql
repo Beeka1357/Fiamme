@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2023 at 03:02 PM
+-- Generation Time: Jul 04, 2023 at 02:22 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.17
 
@@ -194,8 +194,9 @@ CREATE TABLE `coupons` (
 INSERT INTO `coupons` (`id`, `coupon_name`, `coupon_discount`, `coupon_validity`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'ZCZCSD', 10, '2023-06-15', 1, '2023-06-13 07:44:00', '2023-06-13 07:44:00'),
 (2, 'SDSAA2342VCV', 40, '2023-06-17', 1, '2023-06-13 07:45:12', NULL),
-(3, 'ABCDEFR', 24, '2023-06-20', 1, '2023-06-14 11:33:54', '2023-06-14 11:33:54'),
-(4, 'ADIDCC12', 100, '2023-06-22', 1, '2023-06-19 03:48:24', NULL);
+(3, 'ABCDEFR', 24, '2023-06-29', 1, '2023-06-21 23:53:26', '2023-06-21 23:53:26'),
+(4, 'ADIDCC12', 100, '2023-06-22', 1, '2023-06-19 03:48:24', NULL),
+(5, 'AAASASAS', 50, '2023-07-20', 1, '2023-07-03 04:56:14', NULL);
 
 -- --------------------------------------------------------
 
@@ -252,7 +253,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (23, '2023_06_14_094055_create_order_items_table', 13),
 (24, '2023_06_16_123055_create_blog_categories', 14),
 (25, '2023_06_16_123203_create_blog_posts', 14),
-(26, '2023_06_17_142949_create_reviews_table', 15);
+(26, '2023_06_17_142949_create_reviews_table', 15),
+(27, '2023_06_20_111134_create_site_settings', 16),
+(28, '2023_06_21_071939_create_seos_table', 17);
 
 -- --------------------------------------------------------
 
@@ -393,7 +396,12 @@ INSERT INTO `orders` (`id`, `user_id`, `division_id`, `district_id`, `state_id`,
 (12, 14, 2, 2, 1, 'user', 'user@gmail.com', '12121212', 'noida', '000000', 'new testing', 'Cash On Delivery', 'Cash On Delivery', NULL, 'inr', 65.00, NULL, 'EOS76017084', '15 June 2023', 'June', '2023', NULL, NULL, NULL, NULL, NULL, NULL, '16 June 2023', 'wrong product', '2', 'deliverd', '2023-06-15 12:47:23', '2023-06-16 00:24:51'),
 (13, 14, 2, 2, 1, 'user', 'user@gmail.com', '12121212', 'noida', '111111', 'new testing', 'Cash On Delivery', 'Cash On Delivery', NULL, 'inr', 30.00, NULL, 'EOS45731040', '16 June 2023', 'June', '2023', NULL, NULL, NULL, NULL, NULL, NULL, '16 June 2023', 'no reason', '2', 'deliverd', '2023-06-16 01:31:19', '2023-06-16 01:40:50'),
 (14, 16, 2, 2, 1, 'Akash', 'akash@gmail.com', '987654321', 'noida', '010101', 'testing', 'Cash On Delivery', 'Cash On Delivery', NULL, 'inr', 36.00, NULL, 'EOS97507694', '16 June 2023', 'June', '2023', NULL, NULL, NULL, NULL, NULL, NULL, '16 June 2023', 'not buy', '2', 'deliverd', '2023-06-16 06:00:20', '2023-06-16 06:06:20'),
-(15, 16, 2, 2, 1, 'Akash', 'akash@gmail.com', '010101010', 'noida', '120012', 'TEst purpose', 'Cash On Delivery', 'Cash On Delivery', NULL, 'inr', 0.00, NULL, 'EOS91357114', '19 June 2023', 'June', '2023', NULL, NULL, NULL, NULL, NULL, NULL, '19 June 2023', 'not valid', '2', 'deliverd', '2023-06-19 03:49:28', '2023-06-19 04:19:25');
+(15, 16, 2, 2, 1, 'Akash', 'akash@gmail.com', '010101010', 'noida', '120012', 'TEst purpose', 'Cash On Delivery', 'Cash On Delivery', NULL, 'inr', 0.00, NULL, 'EOS91357114', '19 June 2023', 'June', '2023', NULL, NULL, NULL, NULL, NULL, NULL, '19 June 2023', 'not valid', '2', 'deliverd', '2023-06-19 03:49:28', '2023-06-19 04:19:25'),
+(16, 16, 2, 2, 1, 'Akash', 'akash@gmail.com', '987654321', 'noida', '121212', 'testing', 'Cash On Delivery', 'Cash On Delivery', NULL, 'inr', 0.00, NULL, 'EOS43835745', '20 June 2023', 'June', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-06-20 06:48:38', NULL),
+(17, 16, 2, 2, 1, 'Akash', 'akash@gmail.com', '987654321', 'noida', '121212', 'testing for size', 'Cash On Delivery', 'Cash On Delivery', NULL, 'inr', 60.00, NULL, 'EOS27962997', '21 June 2023', 'June', '2023', NULL, NULL, NULL, NULL, NULL, NULL, '21 June 2023', 'not buying', '2', 'deliverd', '2023-06-21 03:19:48', '2023-06-21 04:21:33'),
+(18, 16, 2, 2, 1, 'Akash', 'akash@gmail.com', '987654321', 'noida', '12121212', 'testing', 'Cash On Delivery', 'Cash On Delivery', NULL, 'inr', 23.00, NULL, 'EOS61006400', '22 June 2023', 'June', '2023', NULL, NULL, NULL, NULL, NULL, NULL, '22 June 2023', 'not interest', '2', 'deliverd', '2023-06-22 00:04:38', '2023-06-22 00:10:16'),
+(19, 16, 2, 2, 1, 'Akash', 'akash@gmail.com', '987654321', 'noida', '111111', 'test', 'Cash On Delivery', 'Cash On Delivery', NULL, 'inr', 30.00, NULL, 'EOS14906263', '03 July 2023', 'July', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'deliverd', '2023-07-03 04:18:54', '2023-07-03 04:21:43'),
+(20, 16, 2, 2, 1, 'Akash', 'akash@gmail.com', '987654321', 'noida', '121212', 'for testing', 'Cash On Delivery', 'Cash On Delivery', NULL, 'inr', 90.00, NULL, 'EOS70958229', '04 July 2023', 'July', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-07-04 00:41:34', NULL);
 
 -- --------------------------------------------------------
 
@@ -434,7 +442,12 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `vendor_id`, `color`,
 (13, 12, 23, '2', 'Red', 'Small', '1', 65.00, '2023-06-15 12:47:23', NULL),
 (14, 13, 16, '2', 'Red', 'Small', '1', 30.00, '2023-06-16 01:31:19', NULL),
 (15, 14, 16, '2', 'Red', 'Small', '2', 30.00, '2023-06-16 06:00:20', NULL),
-(16, 15, 14, '2', 'Blue', 'Midium', '5', 30.00, '2023-06-19 03:49:28', NULL);
+(16, 15, 14, '2', 'Blue', 'Midium', '5', 30.00, '2023-06-19 03:49:28', NULL),
+(17, 16, 16, '2', '--Choose Color--', '--Choose Size--', '1', 30.00, '2023-06-20 06:48:38', NULL),
+(18, 17, 17, '2', 'Blue', 'Midium', '2', 30.00, '2023-06-21 03:19:48', NULL),
+(19, 18, 17, '2', 'Red', 'Midium', '1', 30.00, '2023-06-22 00:04:38', NULL),
+(20, 19, 16, '2', 'Red', 'Small', '1', 30.00, '2023-07-03 04:18:54', NULL),
+(21, 20, 14, '2', 'Red', 'Small', '3', 30.00, '2023-07-04 00:41:34', NULL);
 
 -- --------------------------------------------------------
 
@@ -507,8 +520,8 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`id`, `brand_id`, `category_id`, `subcategory_id`, `product_name`, `product_slug`, `product_code`, `product_qty`, `product_tags`, `product_size`, `product_color`, `selling_price`, `discount_price`, `short_descp`, `long_descp`, `product_thambnail`, `vendor_id`, `hot_deals`, `featured`, `special_offer`, `special_deals`, `status`, `created_at`, `updated_at`) VALUES
 (14, 1, 3, 2, 'Alisha', 'alisha', '112', '0', 'new product,top product', 'Small,Midium,Large', 'Red,Blue,Black', '100', '30', 'Alisha\r\nFiamme Lingerie Padded multicolored Combo women seamless sponge padded combo multicolored everyday bra, 100% Brand New and High Quality premium fabric product which is Modern and having design.', '<p class=\"MsoNormal\"><strong style=\"mso-bidi-font-weight: normal;\"><u><span style=\"font-size: 13.0pt; mso-bidi-font-size: 11.0pt; line-height: 115%;\">Alisha</span></u></strong></p>\r\n<p class=\"MsoNormal\" style=\"text-align: justify;\"><span style=\"font-family: \'Arial\',\'sans-serif\'; color: #333333; background: white;\">Fiamme Lingerie Padded multicolored Combo women seamless sponge padded combo multicolored everyday bra, 100% Brand New and High Quality premium fabric product which is Modern and having design. It is very comfortable to touch and wear. specially designed for girls Premium Quality . Designed to make a women look more young and ravishing. This is a perfect garment to make you look charming and cool. It is a perfect bra which gives you a stylist, , sensuous and western look. This range of bra is highly appreciated and demanded widely. Increase variety of wardrobe. Specially design for all purpose.</span></p>', 'upload/products/thambnail/1768021831013146.jpg', '2', NULL, NULL, NULL, NULL, 1, '2023-06-07 00:32:30', '2023-06-19 03:50:46'),
 (15, 13, 4, 3, 'ALX', 'alx', '12', '5', 'new product,top product', 'Small,Midium,Large', 'Red,Blue,Black', '50', '10', 'Fiamme Lingerie Padded multicolored Combo women seamless sponge padded combo multicolored everyday bra, 100% Brand New and High Quality premium fabric product which is Modern and having design. It is very comfortable to touch and wear. specially designed for girls Premium Quality . Designed to make a women look more young and ravishing. This is a perfect garment to make you look charming and cool. It is a perfect bra which gives you a stylist, , sensuous and western look. This range of bra is highly appreciated and demanded widely. Increase variety of wardrobe. Specially design for all purpose.', '<p class=\"MsoNormal\"><strong style=\"mso-bidi-font-weight: normal;\"><u><span style=\"font-size: 13.0pt; mso-bidi-font-size: 11.0pt; line-height: 115%;\">ALX</span></u></strong></p>\r\n<p class=\"MsoNormal\" style=\"text-align: justify;\"><span style=\"font-family: \'Arial\',\'sans-serif\'; color: #333333; background: white;\">Fiamme Lingerie Padded multicolored Combo women seamless sponge padded combo multicolored everyday bra, 100% Brand New and High Quality premium fabric product which is Modern and having design. It is very comfortable to touch and wear. specially designed for girls Premium Quality . Designed to make a women look more young and ravishing. This is a perfect garment to make you look charming and cool. It is a perfect bra which gives you a stylist, , sensuous and western look. This range of bra is highly appreciated and demanded widely. Increase variety of wardrobe. Specially design for all purpose.</span></p>', 'upload/products/thambnail/1768022311085936.jpg', '2', 1, 1, 1, 1, 1, '2023-06-07 00:27:50', NULL),
-(16, 14, 9, 4, 'Cat-1', 'cat-1', 'a1', '5', 'new product,top product', 'Small,Midium,Large', 'Red,Blue,Black', '100', '30', 'Fiamme Lingerie Padded multicolored Combo women seamless sponge padded combo multicolored everyday bra, 100% Brand New and High Quality premium fabric product which is Modern and having design. It is very comfortable to touch and wear. specially designed for girls Premium Quality . Designed to make a women look more young and ravishing. This is a perfect', '<p class=\"MsoNormal\"><strong style=\"mso-bidi-font-weight: normal;\"><u><span style=\"font-size: 13.0pt; mso-bidi-font-size: 11.0pt; line-height: 115%;\">Alisha</span></u></strong></p>\r\n<p class=\"MsoNormal\" style=\"text-align: justify;\"><span style=\"font-family: \'Arial\',\'sans-serif\'; color: #333333; background: white;\">Fiamme Lingerie Padded multicolored Combo women seamless sponge padded combo multicolored everyday bra, 100% Brand New and High Quality premium fabric product which is Modern and having design. It is very comfortable to touch and wear. specially designed for girls Premium Quality . Designed to make a women look more young and ravishing. This is a perfect garment to make you look charming and cool. It is a perfect bra which gives you a stylist, , sensuous and western look. This range of bra is highly appreciated and demanded widely. Increase variety of wardrobe. Specially design for all purpose.</span></p>', 'upload/products/thambnail/1768022775248601.jpg', '2', 1, 1, 1, 1, 1, '2023-06-07 00:35:18', NULL),
-(17, 15, 16, 15, 'Cat-2', 'cat-2', 'a1', '4', 'new product,top product', 'Small,Midium,Large', 'Red,Blue,Black', '100', '30', 'Alisha\r\nFiamme Lingerie Padded multicolored Combo women seamless sponge padded combo multicolored everyday bra, 100% Brand New and High Quality premium fabric product which is Modern and having design. It is very comfortable to touch and wear. specially designed for girls Premium Quality . Designed to make a women look more young and ravishing.', '<p class=\"MsoNormal\"><strong style=\"mso-bidi-font-weight: normal;\"><u><span style=\"font-size: 13.0pt; mso-bidi-font-size: 11.0pt; line-height: 115%;\">Alisha</span></u></strong></p>\r\n<p class=\"MsoNormal\" style=\"text-align: justify;\"><span style=\"font-family: \'Arial\',\'sans-serif\'; color: #333333; background: white;\">Fiamme Lingerie Padded multicolored Combo women seamless sponge padded combo multicolored everyday bra, 100% Brand New and High Quality premium fabric product which is Modern and having design. It is very comfortable to touch and wear. specially designed for girls Premium Quality . Designed to make a women look more young and ravishing. This is a perfect garment to make you look charming and cool. It is a perfect bra which gives you a stylist, , sensuous and western look. This range of bra is highly appreciated and demanded widely. Increase variety of wardrobe. Specially design for all purpose.</span></p>', 'upload/products/thambnail/1768023135607843.jpg', '2', 1, 1, 1, 1, 1, '2023-06-07 00:41:01', NULL),
+(16, 14, 9, 4, 'Cat-1', 'cat-1', 'a1', '4', 'new product,top product', 'Small,Midium,Large', 'Red,Blue,Black', '100', '30', 'Fiamme Lingerie Padded multicolored Combo women seamless sponge padded combo multicolored everyday bra, 100% Brand New and High Quality premium fabric product which is Modern and having design. It is very comfortable to touch and wear. specially designed for girls Premium Quality . Designed to make a women look more young and ravishing. This is a perfect', '<p class=\"MsoNormal\"><strong style=\"mso-bidi-font-weight: normal;\"><u><span style=\"font-size: 13.0pt; mso-bidi-font-size: 11.0pt; line-height: 115%;\">Alisha</span></u></strong></p>\r\n<p class=\"MsoNormal\" style=\"text-align: justify;\"><span style=\"font-family: \'Arial\',\'sans-serif\'; color: #333333; background: white;\">Fiamme Lingerie Padded multicolored Combo women seamless sponge padded combo multicolored everyday bra, 100% Brand New and High Quality premium fabric product which is Modern and having design. It is very comfortable to touch and wear. specially designed for girls Premium Quality . Designed to make a women look more young and ravishing. This is a perfect garment to make you look charming and cool. It is a perfect bra which gives you a stylist, , sensuous and western look. This range of bra is highly appreciated and demanded widely. Increase variety of wardrobe. Specially design for all purpose.</span></p>', 'upload/products/thambnail/1768022775248601.jpg', '2', 1, 1, 1, 1, 1, '2023-06-07 00:35:18', '2023-07-03 04:21:43'),
+(17, 15, 16, 15, 'Cat-2', 'cat-2', 'a1', '1', 'new product,top product', 'Small,Midium,Large', 'Red,Blue,Black', '100', '30', 'Alisha\r\nFiamme Lingerie Padded multicolored Combo women seamless sponge padded combo multicolored everyday bra, 100% Brand New and High Quality premium fabric product which is Modern and having design. It is very comfortable to touch and wear. specially designed for girls Premium Quality . Designed to make a women look more young and ravishing.', '<p class=\"MsoNormal\"><strong style=\"mso-bidi-font-weight: normal;\"><u><span style=\"font-size: 13.0pt; mso-bidi-font-size: 11.0pt; line-height: 115%;\">Alisha</span></u></strong></p>\r\n<p class=\"MsoNormal\" style=\"text-align: justify;\"><span style=\"font-family: \'Arial\',\'sans-serif\'; color: #333333; background: white;\">Fiamme Lingerie Padded multicolored Combo women seamless sponge padded combo multicolored everyday bra, 100% Brand New and High Quality premium fabric product which is Modern and having design. It is very comfortable to touch and wear. specially designed for girls Premium Quality . Designed to make a women look more young and ravishing. This is a perfect garment to make you look charming and cool. It is a perfect bra which gives you a stylist, , sensuous and western look. This range of bra is highly appreciated and demanded widely. Increase variety of wardrobe. Specially design for all purpose.</span></p>', 'upload/products/thambnail/1768023135607843.jpg', '2', 1, 1, 1, 1, 1, '2023-06-07 00:41:01', '2023-06-22 00:06:52'),
 (18, 16, 18, 5, 'Central Lastic', 'central-lastic', '12', '10', 'new product,top product', 'Small,Midium,Large', 'Red,Blue,Black', '100', '30', 'Alisha\r\nFiamme Lingerie Padded multicolored Combo women seamless sponge padded combo multicolored everyday bra, 100% Brand New and High Quality premium fabric product which is Modern and having design. It is very comfortable to touch and wear. specially designed for girls Premium Quality . Designed to make a women look more young and ravishing. This is a perfect garment to make you look charming and cool. It is a perfect bra which gives you a stylist, , sensuous and western look. This range of bra is highly appreciated and demanded widely. Increase variety of wardrobe. Specially design for all purpose.', '<p class=\"MsoNormal\"><strong style=\"mso-bidi-font-weight: normal;\"><u><span style=\"font-size: 13.0pt; mso-bidi-font-size: 11.0pt; line-height: 115%;\">Alisha</span></u></strong></p>\r\n<p class=\"MsoNormal\" style=\"text-align: justify;\"><span style=\"font-family: \'Arial\',\'sans-serif\'; color: #333333; background: white;\">Fiamme Lingerie Padded multicolored Combo women seamless sponge padded combo multicolored everyday bra, 100% Brand New and High Quality premium fabric product which is Modern and having design. It is very comfortable to touch and wear. specially designed for girls Premium Quality . Designed to make a women look more young and ravishing. This is a perfect garment to make you look charming and cool. It is a perfect bra which gives you a stylist, , sensuous and western look. This range of bra is highly appreciated and demanded widely. Increase variety of wardrobe. Specially design for all purpose.</span></p>', 'upload/products/thambnail/1768024034392202.jpg', '2', 1, 1, 1, 1, 1, '2023-06-07 00:55:17', NULL),
 (19, 17, 18, 6, 'Dream', 'dream', '10', '10', 'new product,top product', 'Small,Midium,Large', 'Red,Blue,Black', '100', '50', 'Alisha\r\nFiamme Lingerie Padded multicolored Combo women seamless sponge padded combo multicolored everyday bra, 100% Brand New and High Quality premium fabric product which is Modern and having design. It is very comfortable to touch and wear. specially designed for girls Premium Quality . Designed to make a women look more young and ravishing. This is a perfect garment to make you look charming and cool. It is a perfect bra which gives you a stylist, , sensuous and western look. This range of bra is highly appreciated and demanded widely. Increase variety of wardrobe. Specially design for all purpose.', '<p class=\"MsoNormal\"><strong style=\"mso-bidi-font-weight: normal;\"><u><span style=\"font-size: 13.0pt; mso-bidi-font-size: 11.0pt; line-height: 115%;\">Alisha</span></u></strong></p>\r\n<p class=\"MsoNormal\" style=\"text-align: justify;\"><span style=\"font-family: \'Arial\',\'sans-serif\'; color: #333333; background: white;\">Fiamme Lingerie Padded multicolored Combo women seamless sponge padded combo multicolored everyday bra, 100% Brand New and High Quality premium fabric product which is Modern and having design. It is very comfortable to touch and wear. specially designed for girls Premium Quality . Designed to make a women look more young and ravishing. This is a perfect garment to make you look charming and cool. It is a perfect bra which gives you a stylist, , sensuous and western look. This range of bra is highly appreciated and demanded widely. Increase variety of wardrobe. Specially design for all purpose.</span></p>', 'upload/products/thambnail/1768024386003782.JPG', '2', 1, 1, 1, 1, 1, '2023-06-07 01:00:48', NULL),
 (20, 18, 18, 7, 'Ghazal', 'ghazal', 'a1', '5', 'new product,top product', 'Small,Midium,Large', 'Red,Blue,Black', '100', '40', 'Alisha\r\nFiamme Lingerie Padded multicolored Combo women seamless sponge padded combo multicolored everyday bra, 100% Brand New and High Quality premium fabric product which is Modern and having design.', '<p class=\"MsoNormal\"><strong style=\"mso-bidi-font-weight: normal;\"><u><span style=\"font-size: 13.0pt; mso-bidi-font-size: 11.0pt; line-height: 115%;\">Alisha</span></u></strong></p>\r\n<p class=\"MsoNormal\" style=\"text-align: justify;\"><span style=\"font-family: \'Arial\',\'sans-serif\'; color: #333333; background: white;\">Fiamme Lingerie Padded multicolored Combo women seamless sponge padded combo multicolored everyday bra, 100% Brand New and High Quality premium fabric product which is Modern and having design. It is very comfortable to touch and wear. specially designed for girls Premium Quality . Designed to make a women look more young and ravishing. This is a perfect garment to make you look charming and cool. It is a perfect bra which gives you a stylist, , sensuous and western look. This range of bra is highly appreciated and demanded widely. Increase variety of wardrobe. Specially design for all purpose.</span></p>', 'upload/products/thambnail/1768025727748910.jpeg', '2', 1, 1, 1, 1, 1, '2023-06-07 01:22:07', NULL),
@@ -548,6 +561,22 @@ INSERT INTO `reviews` (`id`, `product_id`, `user_id`, `comment`, `rating`, `stat
 (3, 15, 16, 'testing for comment', '4', '1', 2, '2023-06-17 09:37:08', '2023-06-17 10:40:11'),
 (5, 17, 16, 'Cat-2 testing review', '5', '1', 2, '2023-06-17 10:37:02', '2023-06-17 10:37:31'),
 (6, 14, 16, 'testing purpose', '4', '1', 2, '2023-06-19 03:41:58', '2023-06-19 03:42:38');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `seos`
+--
+
+CREATE TABLE `seos` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `meta_title` varchar(255) DEFAULT NULL,
+  `meta_author` varchar(255) DEFAULT NULL,
+  `meta_keyword` varchar(255) DEFAULT NULL,
+  `meta_description` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -632,6 +661,34 @@ CREATE TABLE `shoppingcart` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `site_settings`
+--
+
+CREATE TABLE `site_settings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `logo` varchar(255) DEFAULT NULL,
+  `support_phone` varchar(255) DEFAULT NULL,
+  `phone_one` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `company_address` text DEFAULT NULL,
+  `facebook` varchar(255) DEFAULT NULL,
+  `twitter` varchar(255) DEFAULT NULL,
+  `youtube` varchar(255) DEFAULT NULL,
+  `copyright` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `site_settings`
+--
+
+INSERT INTO `site_settings` (`id`, `logo`, `support_phone`, `phone_one`, `email`, `company_address`, `facebook`, `twitter`, `youtube`, `copyright`, `created_at`, `updated_at`) VALUES
+(1, 'upload/logo/1769295531058329.webp', '1900 - 8888', '(+91) - 540-025-124553', 'sale@Fiamme.com', 'Noida', 'https://www.facebook.com/', 'https://twitter.com/i/flow/login', 'https://youtube.com/', '© 2023, FIAMME All rights reserved', NULL, '2023-06-21 01:45:06');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sliders`
 --
 
@@ -707,7 +764,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `photo`, `phone`, `address`, `vendor_join`, `vendor_short_info`, `role`, `status`, `last_seen`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$5TXnWeTCye9eMCG9sjRtrunrCcnKO1eIyt6hVO7v19sDvqIKdbLau', '202305311927avatar-11.png', '12112112212', 'noida', NULL, NULL, 'admin', 'active', '2023-06-19 09:49:30', NULL, NULL, '2023-06-19 04:19:30'),
+(1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$5TXnWeTCye9eMCG9sjRtrunrCcnKO1eIyt6hVO7v19sDvqIKdbLau', '202305311927avatar-11.png', '12112112212', 'noida', NULL, NULL, 'admin', 'active', '2023-07-04 04:34:21', NULL, NULL, '2023-07-03 23:04:21'),
 (2, 'Akash', 'vendor', 'vendor@gmail.com', NULL, '$2y$10$RzJMqpP8rUawnIC/8CCKxepY.A3RfzQT1c9BEvcAdbXL6vs4R83wG', '202306051127avatar-1.png', '121212121212', 'noida', '2023', 'testing', 'vendor', 'active', NULL, NULL, NULL, '2023-06-05 05:57:51'),
 (3, 'Test', 'test', 'test@gmail.com', NULL, '$2y$10$HHGQvZdoJssKENkdWwtu5.vk8ndQaYgBqIwyUwGxvaOqBuVfWOM/y', '202306051100avatar-1.png', '1222232222', 'noida', NULL, NULL, 'user', 'active', '2023-06-16 11:14:26', NULL, NULL, '2023-06-16 05:44:26'),
 (4, 'Francis Paucek', NULL, 'ulockman@example.com', '2023-05-31 05:52:19', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', NULL, NULL, NULL, NULL, NULL, 'user', 'active', NULL, 'q6ki9uUatf', '2023-05-31 05:52:19', '2023-05-31 05:52:19'),
@@ -722,7 +779,7 @@ INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `pa
 (13, 'Oda Dicki I', NULL, 'schultz.johanna@example.com', '2023-05-31 05:52:19', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', NULL, NULL, NULL, NULL, NULL, 'user', 'active', NULL, '0fGSo9lf4R', '2023-05-31 05:52:20', '2023-05-31 05:52:20'),
 (14, 'user', 'user', 'user@gmail.com', NULL, '$2y$10$TLn3M6cT7V4wVW6QQSbRbOFI4uHpAlCgpnoIc2tnXoq7eV1JsmMze', '202306150914avatar-13.png', '12121212', 'noida', NULL, NULL, 'user', 'active', '2023-06-16 10:54:36', NULL, '2023-06-01 00:27:33', '2023-06-16 05:24:36'),
 (15, 'tech shop', 'tech', 'tech@gmail.com', NULL, '$2y$10$i3ybmanf9IBdlyZYpyTI0.0.G3hgtBrOv6BPKZ8WBQ47s7Lt7WN4y', '202306031856avatar-1.png', '1212121212', 'india', '2023', 'noisaddd', 'vendor', 'inactive', NULL, NULL, NULL, '2023-06-03 13:26:51'),
-(16, 'Akash', 'akash', 'akash@gmail.com', NULL, '$2y$10$5fZXUKNd8K9cG3i2CDpET.GXMI1zekr/27XKCaoGte4jolGReZy7S', '202306171601avatar-1.png', '987654321', 'noida', NULL, NULL, 'user', 'active', '2023-06-19 12:59:03', NULL, '2023-06-16 05:50:20', '2023-06-19 07:29:03');
+(16, 'Akash', 'akash', 'akash@gmail.com', NULL, '$2y$10$5fZXUKNd8K9cG3i2CDpET.GXMI1zekr/27XKCaoGte4jolGReZy7S', '202306171601avatar-1.png', '987654321', 'noida', NULL, NULL, 'user', 'active', '2023-07-04 08:54:09', NULL, '2023-06-16 05:50:20', '2023-07-04 03:24:09');
 
 -- --------------------------------------------------------
 
@@ -853,6 +910,12 @@ ALTER TABLE `reviews`
   ADD KEY `reviews_user_id_foreign` (`user_id`);
 
 --
+-- Indexes for table `seos`
+--
+ALTER TABLE `seos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `ship_districts`
 --
 ALTER TABLE `ship_districts`
@@ -875,6 +938,12 @@ ALTER TABLE `ship_states`
 --
 ALTER TABLE `shoppingcart`
   ADD PRIMARY KEY (`identifier`,`instance`);
+
+--
+-- Indexes for table `site_settings`
+--
+ALTER TABLE `site_settings`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `sliders`
@@ -939,13 +1008,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `compares`
 --
 ALTER TABLE `compares`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -957,7 +1026,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `multi_imgs`
@@ -969,13 +1038,13 @@ ALTER TABLE `multi_imgs`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -996,6 +1065,12 @@ ALTER TABLE `reviews`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `seos`
+--
+ALTER TABLE `seos`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `ship_districts`
 --
 ALTER TABLE `ship_districts`
@@ -1012,6 +1087,12 @@ ALTER TABLE `ship_divisions`
 --
 ALTER TABLE `ship_states`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `site_settings`
+--
+ALTER TABLE `site_settings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `sliders`
@@ -1035,7 +1116,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `wishlists`
 --
 ALTER TABLE `wishlists`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
