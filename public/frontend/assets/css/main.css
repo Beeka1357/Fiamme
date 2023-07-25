@@ -209,7 +209,7 @@ li.hr span {
     background-color: #fff;
     border-radius: 5px;
     border: 1px solid #e03f93e8;
-    width: 60%;
+    /* width: 60%; */
 }
 
 
@@ -290,6 +290,8 @@ input[type=number]:focus,
   transition: transform .5s;
   transition: transform .5s, -webkit-transform .5s;
   transition: transform .5s,-webkit-transform .5s;
+
+
 }
 
 .img-hover-scale:hover img {
@@ -300,6 +302,7 @@ input[type=number]:focus,
   transition: transform .5s;
   transition: transform .5s, -webkit-transform .5s;
   transition: transform .5s,-webkit-transform .5s;
+  border-radius: 5% !important;
 }
 
 .hover-up {
@@ -1155,8 +1158,9 @@ button.submit:hover, button[type='submit']:hover {
 }
 
 .btn.btn-xs, .button.btn-xs {
-  padding: 7px 8px 7px 12px;
-  font-size: 12px;
+  width: 100%;
+    padding: 7px 14px 10px 59px;
+    font-size: 23px;
   text-transform: none;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -1164,11 +1168,14 @@ button.submit:hover, button[type='submit']:hover {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   line-height: 1.3;
+  align-items: center;
+  gap: 2px;
 }
 
 .btn.btn-xs i, .button.btn-xs i {
-  font-size: 14px !important;
+  /* font-size: 30px !important; */
   line-height: 0;
+  
 }
 
 .btn.btn-rounded, .button.btn-rounded {
@@ -1901,7 +1908,7 @@ input.qty-val {
 }
 
 .hero-slider-1 .single-hero-slider.rectangle {
-  border-radius: 0;
+  border-radius: 10px !important;
 }
 
 .hero-slider-1 .single-hero-slider.rectangle .slider-content {
@@ -1919,7 +1926,7 @@ input.qty-val {
 
 .hero-slider-1 img {
   max-height: 538px;
-  border-radius: 30px;
+  border-radius: 30px !important;
 }
 
 .hero-slider-1 .slider-content {
@@ -2356,9 +2363,9 @@ input.qty-val {
 
 .card-2 {
   position: relative;
-  background: #F4F6FA;
+  background: #e03f93e8;
   text-align: center;
-  border: 1px solid #F4F6FA;
+  /* border: 1px solid #F4F6FA; */
   border-radius: 10px;
   padding: 20px 0px 18px 0px;
   margin-bottom: 20px;
@@ -2368,12 +2375,13 @@ input.qty-val {
 }
 
 .card-2:hover {
-  background: #fff;
-  border: 1px solid #BCE3C9;
+  /* background: #fff; */
+  /* border: 1px solid #ec59d6; */
   -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
           box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
   -webkit-transition: 0.2s;
   transition: 0.2s;
+  
 }
 
 .card-2 figure {
@@ -2381,10 +2389,10 @@ input.qty-val {
   margin-bottom: 10px;
 }
 
-.card-2 figure img {
+ figure img {
   border-radius: 10px;
   display: inline-block;
-  max-width: 80px;
+  /* max-width: 200px; */
 }
 
 .card-2 h6 {
@@ -2392,11 +2400,11 @@ input.qty-val {
 }
 
 .card-2 h6 a {
-  color: #e03f93e8;
+  color: #fff;
 }
 
 .card-2:hover a {
-  color: #e03f93e8;
+  color: #fff;
 }
 
 .hero-card {
@@ -2503,6 +2511,7 @@ input.qty-val {
 .featured-card:hover {
   -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
           box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
+         
 }
 
 .team-card {
@@ -3472,12 +3481,13 @@ table .product-thumbnail img {
 }
 
 .banner-img .banner-text {
+  width: 100%;
   position: absolute;
-  top: 50%;
+  top: 64%;
   z-index: 2;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  padding: 0 50px;
+  padding: 0;
 }
 
 .banner-img .banner-text span {
@@ -3511,8 +3521,8 @@ table .product-thumbnail img {
 .banner-img.style-2 {
   border-radius: 15px;
   overflow: hidden;
-  height: 520px;
-  background: url(../imgs/banner/fiamme.png) no-repeat center bottom;
+  height: 383px !important;
+  background: url(../imgs/banner/banner1.jpg) no-repeat center bottom;
   background-size: cover;
   width: 100%;
 }
@@ -3950,7 +3960,7 @@ table .product-thumbnail img {
 .product-cart-wrap:hover {
   -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
           box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
-  border: 1px solid #BCE3C9;
+  border: 1px solid #e03f93e8;
   transition: .2s;
   -moz-transition: .2s;
   -webkit-transition: .2s;
@@ -3968,7 +3978,11 @@ table .product-thumbnail img {
 .product-cart-wrap .product-img-action-wrap .product-action-1 {
   background-color: #fff;
   border-radius: 5px;
-  border: 1px solid #BCE3C9;
+  border: 1px solid #e03f93e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .product-cart-wrap .product-img-action-wrap .product-img {
@@ -4044,9 +4058,9 @@ table .product-thumbnail img {
 }
 
 .product-cart-wrap .product-action-1 button.small, .product-cart-wrap .product-action-1 a.action-btn.small {
-  width: 32px;
-  height: 32px;
-  line-height: 32px;
+  width: 40px;
+  height: 36px;
+  line-height: 43px;
 }
 
 .product-cart-wrap .product-action-1 button.small i, .product-cart-wrap .product-action-1 a.action-btn.small i {
@@ -4099,7 +4113,8 @@ table .product-thumbnail img {
 
 .product-cart-wrap .product-action-1 button i, .product-cart-wrap .product-action-1 a.action-btn i {
   font-size: 15px;
-  margin-left: 1px;
+  /* margin-left: 1px; */
+  margin-right: 11px;
 }
 
 .product-cart-wrap .product-action-1 button:hover, .product-cart-wrap .product-action-1 a.action-btn:hover {
@@ -4276,7 +4291,7 @@ table .product-thumbnail img {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin-top: 15px;
+  /* margin-top: 15px; */
 }
 
 .product-cart-wrap .product-card-bottom .add-cart {
@@ -4940,7 +4955,7 @@ table .product-thumbnail img {
 }
 
 .slider-nav-thumbnails .slick-slide.slick-current img {
-  border: 2px solid #a2d2c9;
+  border: 2px solid #e03f93e8;
 }
 
 .slider-nav-thumbnails div.slick-slide {
@@ -5232,6 +5247,7 @@ table .product-thumbnail img {
   margin: 0 5px;
   transition: all 0.5s ease-out 0s;
   -webkit-transition: all 0.5s ease-out 0s;
+  
 }
 
 .product-extra-link2 a:hover {
@@ -7808,9 +7824,9 @@ h6.post-title {
   background-color: transparent;
   padding: 0;
   border: none;
-  width: 26px;
-  height: 26px;
-  background-color: #DEF9EC;
+  width: 34px;
+  height: 32px;
+  /* background-color: #DEF9EC; */
   border-radius: 30px;
 }
 
@@ -7818,7 +7834,7 @@ h6.post-title {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 10px;
+  width: 20px;
   height: 1px;
   margin: 0 !important;
   -webkit-transform-origin: center;
@@ -8755,7 +8771,7 @@ span.fi-rs-apps {
 }
 
 .main-menu.main-menu-padding-1 > nav > ul > li:first-child {
-  padding-left: 0 !important;
+  padding-left: 30px !important;
 }
 
 .main-menu.main-menu-lh-2 > nav > ul > li {
@@ -11812,7 +11828,7 @@ footer .hotline img {
 
 @media only screen and (min-width: 1200px) and (max-width: 1365px) {
   .main-menu.main-menu-padding-1 > nav > ul > li {
-    padding: 0 14px;
+    padding: 0 43px ;
   }
 }
 

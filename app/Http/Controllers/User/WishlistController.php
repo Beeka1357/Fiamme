@@ -36,8 +36,9 @@ class WishlistController extends Controller
 
     public function AllWishlist()
     {
-
-        return view('frontend.wishlist.view_wishlist');
+        $wishlist = Wishlist::with('product')->where('user_id', Auth::id())->latest()->get();
+        // return view('frontend.wishlist.view_wishlist');
+        return view('frontend.wishlist.view_wishlist',['wishlist' => $wishlist]);
     }
     // End Method 
 
@@ -46,7 +47,8 @@ class WishlistController extends Controller
 
         $wishlist = Wishlist::with('product')->where('user_id', Auth::id())->latest()->get();
 
-        $wishQty = wishlist::count();
+
+        $wishQty = Wishlist::with('product')->where('user_id', Auth::id())->latest()->count();
 
         return response()->json(['wishlist' => $wishlist, 'wishQty' => $wishQty]);
     }

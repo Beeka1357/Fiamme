@@ -1,0 +1,94 @@
+.main-menu > nav > ul > li ul.mega-menu li ul li{
+   margin-bottom: 5px; 
+}
+.main-menu > nav > ul > li ul.mega-menu li  a{
+    font-weight: 800;
+    font-size: 21px;
+}
+.main-menu > nav > ul > li ul.mega-menu li ul{
+    margin-top: 5px;
+}
+.header-style-1 .header-middle-ptb-1 {
+    padding: 5px 0;
+}
+
+.single-hero-slider{
+border-radius: 5 !important;
+}
+
+.card-2{
+    width:auto !important;
+    max-width: 190px;
+    min-height: 200px;
+    padding: 0px 0;
+}
+#carausel-10-columns .slick-track{
+    width:100%!important;
+}
+@media only screen and (max-width: 768px) {
+    #carausel-10-columns .slick-track{
+        width:2400px!important;
+    }
+}
+.banner-img.style-2 .banner-text {
+    padding:0px;
+    width:100%;
+    bottom: 0px!important;
+    top:auto;
+}
+#buttonn{
+    width: 100% !important;
+    padding: 15px 0px 15px 35px;
+    font-size: 18px;
+}
+.btn.btn-xs i, .button.btn-xs i {
+    font-size: 25px !important;
+    line-height: 0;
+}
+/* .offers{
+    width: 10px;
+} */
+
+.carausel-10-columns-cover .carausel-10-columns .card-2 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.text{
+    color: #fff;
+}
+
+.col-lg-4-5 .product-cart-wrap .product-action-1 a.action-btn {
+    width: 32px;
+}
+.banner-img img {
+    border-radius: 10px;
+    height: 250px;
+}
+
+.product-cart-wrap:hover .product-img-action-wrap .product-action-1 {
+    opacity: 1;
+    padding-left: 7px;
+    visibility: visible;
+}
+
+.banner-text .btn{
+    background-color: transparent;
+}
+.banner-text .btn:hover{
+    background-color: #e03f93e8;
+}
+
+.product-extra-link2 a{
+    padding-top: 15px;
+}
+
+.circle-divRed, .circle-divGreen, .circle-divBlue {
+
+    width: 200px;
+    
+    height: 200px;
+    
+    border-radius: 50%;
+    
+    
+    }

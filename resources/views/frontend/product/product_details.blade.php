@@ -2,7 +2,7 @@
 @section('main')
 
 @section('title')
-    {{ $product->product_name }} 
+{{ $product->product_name }}
 @endsection
 
 <!-- Toaster -->
@@ -11,6 +11,28 @@
 <style>
     .toast-success {
         background-color: #e03f93e8 !important;
+    }
+
+    .slick-slide {
+        display: none;
+        float: left;
+        height: auto !important;
+        min-height: 1px;
+    }
+
+    .round1 {
+        border: 2px solid #e03f93e8;
+        border-radius: 50%;
+        padding: 10px;
+        /* width: 10%; */
+        height: 10%;
+        margin: 0 7px;
+        cursor: pointer;
+    }
+
+    .selectedProdSize {
+        background: lightpink;
+        font-weight: 800;
     }
 </style>
 
@@ -32,13 +54,27 @@
                         <div class="detail-gallery">
                             <span class="zoom-icon"><i class="fi-rs-search"></i></span>
                             <!-- MAIN SLIDES -->
-                            <div class="product-image-slider">
+
+                            <div class="colorChooseImageRed" style="display: none">
+                                <img src="{{asset('frontend/assets/banner1.jpg')}}" alt="">
+                            </div>
+                            <div class="colorChooseImageGreen" style="display: none">
+                                <img src="{{asset('frontend/assets/banner2.jpg')}}" alt="">
+                            </div>
+                            <div class="colorChooseImageBlue" style="display: none">
+                                <img src="{{asset('frontend/assets/banner3.jpg')}}" alt="">
+                            </div>
+                            <div class="product-image-slider customShowImg">
+
                                 @foreach($multiImage as $img)
                                 <figure class="border-radius-10">
                                     <img src="{{ asset($img->photo_name) }} " alt="product image" />
                                 </figure>
                                 @endforeach
                             </div>
+
+
+
                             <!-- THUMBNAILS -->
                             <div class="slider-nav-thumbnails">
                                 @foreach($multiImage as $img)
@@ -83,7 +119,7 @@
                     </div>
                     @endif
                 </div>
-             
+
                 <span class="font-small ml-5 text-muted"> ({{ count($reviewcount)}} reviews)</span>
             </div>
         </div>
@@ -115,27 +151,50 @@
         @else
         <div class="attr-detail attr-size mb-30">
             <strong class="mr-10" style="width:50px;">Size : </strong>
-            <select class="form-control unicase-form-control" id="dsize">
-                <option selected="" disabled="">--Choose Size--</option>
-                @foreach($product_size as $size)
-                <option value="{{ $size }}">{{ ucwords($size)  }}</option>
-                @endforeach
-            </select>
+            @php
+            $i=1 ;
+            $selected_size = 0;
+            @endphp
+            @foreach($product_size as $size)
+            @if($i == 1)
+            @php $selected_size = $size; @endphp
+            @endif
+            <div class="round1 prodSize {{($i++ == 1)?'selectedProdSize':''}}" id="productSize{{$size}}" data-val="{{$size}}"><span style="font-size: 21px;">{{$size}}</span></div>
+            @endforeach
+            <input type="hidden" id="prodSizeNumber" value="{{$selected_size}}">
+
+            <!-- <div class="round1">30</div>
+            <div class="round1">32</div>
+            <div class="round1">34</div>
+            <div class="round1">36</div>
+            <div class="round1">38</div>
+            <div class="round1">38</div> -->
+
         </div>
         @endif
-        @if($product->product_color == NULL)
-        @else
+        
         <div class="attr-detail attr-size mb-30">
             <strong class="mr-10" style="width:50px;">Color : </strong>
-            <select class="form-control unicase-form-control" id="dcolor">
+            <!-- <select class="form-control unicase-form-control" id="dcolor">
                 <option selected="" disabled="">--Choose Color--</option>
-                @foreach($product_color as $color)
+                 @foreach($product_color as $color)
                 <option value="{{ $color }}">{{ ucwords($color)  }}</option>
-                @endforeach
-            </select>
+                @endforeach 
+            </select> -->
+        
+            <div style="display: flex; gap: 5px; align-items: center;">
+            
+                <div onclick="changeImage('red', 0)" class="circle-divRed" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: red;">
+
+                </div>
+                
+                <div onclick="changeImage('green', 1)" class="circle-divGreen" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: green;"></div>
+                <div onclick="changeImage('blue', 2)" class="circle-divBlue" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: blue;"></div>
+            
+            </div>
         </div>
 
-        @endif
+      
 
         <div class="detail-extralink mb-50">
             <div class="detail-qty border radius">
@@ -186,7 +245,7 @@
                 <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab" href="#Vendor-info">Vendor</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews ({{ count($reviewcount) }})</a>
+                <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews ({{ count($reviewcount) }})</a>
             </li>
         </ul>
         <div class="tab-content shop_info_tab entry-main-content">
@@ -562,3 +621,79 @@
 </div>
 </div>
 @endsection
+<script>
+    document.querySelector(".colorChooseImageRed").style.display = "none";
+    document.querySelector(".colorChooseImageGreen").style.display = "none";
+    document.querySelector(".colorChooseImageBlue").style.display = "none";
+    document.querySelector(".circle-divRed").style.border = "none"
+    document.querySelector(".circle-divGreen").style.border = "none"
+    document.querySelector(".circle-divBlue").style.border = "none"
+
+    function changeImage(value, index) {
+        if (value == 'red') {
+            document.querySelector('.customShowImg').style.display = "none"
+            document.querySelector(".colorChooseImageRed").style.display = "none";
+            document.querySelector(".colorChooseImageGreen").style.display = "none";
+            document.querySelector(".colorChooseImageBlue").style.display = "none";
+            document.querySelector(".colorChooseImageRed").style.display = "block";
+            document.querySelector(".circle-divRed").style.border = "2px solid  #e03f93e8"
+            document.querySelector(".circle-divRed").style.padding = "12px";
+            document.querySelector(".circle-divGreen").style.padding = "0px";
+            document.querySelector(".circle-divBlue").style.padding = "0px";
+            document.querySelector(".circle-divBlue").style.border = "3px solid blue"
+            document.querySelector(".circle-divGreen").style.border = "3px solid green"
+        }
+        if (value == 'green') {
+            document.querySelector('.customShowImg').style.display = "none"
+            document.querySelector(".colorChooseImageRed").style.display = "none";
+            document.querySelector(".colorChooseImageBlue").style.display = "none";
+            document.querySelector(".colorChooseImageGreen").style.display = "block";
+            document.querySelector(".circle-divGreen").style.border = "2px solid  #e03f93e8"
+            document.querySelector(".circle-divRed").style.padding = "0px";
+            document.querySelector(".circle-divGreen").style.padding = "12px";
+            document.querySelector(".circle-divBlue").style.padding = "0px";
+            document.querySelector(".circle-divRed").style.border = "3px solid red"
+            document.querySelector(".circle-divBlue").style.border = "3px solid blue"
+        }
+        if (value == 'blue') {
+            document.querySelector('.customShowImg').style.display = "none"
+            document.querySelector(".colorChooseImageRed").style.display = "none";
+            document.querySelector(".colorChooseImageGreen").style.display = "none";
+            document.querySelector(".colorChooseImageBlue").style.display = "block";
+            document.querySelector(".circle-divBlue").style.border = "2px solid  #e03f93e8";
+            document.querySelector(".circle-divRed").style.padding = "0px";
+            document.querySelector(".circle-divGreen").style.padding = "0px";
+            document.querySelector(".circle-divBlue").style.padding = "12px";
+            document.querySelector(".circle-divRed").style.border = "3px solid red"
+            
+            document.querySelector(".circle-divGreen").style.border = "3px solid green"
+        }
+    }
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.prodSize').click(function() {
+            let prodSizeNumber = $('#prodSizeNumber').val();
+            let prodSize = $(this).data('val');
+            $('#prodSizeNumber').val(prodSize);
+            $('#productSize' + prodSizeNumber).removeClass('selectedProdSize');
+            $(this).addClass('selectedProdSize');
+        });
+    });
+
+</script>
+
+<script>
+    $(document).ready(()=>{
+    $('#car-colour').change(function () {
+        let newColor = this[this.selectedIndex].value;
+        $('img').attr('src', (index, src)=>{
+          return src.replace(/red|white|black|blue/gi, newColor);
+        })
+        $('li[data-thumb*=images]').attr('data-thumb', (index, src)=>{
+          return src.replace(/red|white|black|blue/gi, newColor);
+        })
+    })
+})
+</script>

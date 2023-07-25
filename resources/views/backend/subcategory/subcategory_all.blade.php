@@ -30,9 +30,9 @@
 								<thead>
 			<tr>
 				<th>Sl</th>
-				<th>Category Name </th>
 				<th>SubCategory Name </th>
-				<th>Action</th> 
+				<th>SubsubCategory Name </th>
+				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>

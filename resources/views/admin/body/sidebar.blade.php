@@ -66,6 +66,22 @@
         </li>
         {{-- END SUB CATEGORY --}}
 
+        {{-- SUB SUB CATEGORY --}}
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Sub SubCategory</div>
+            </a>
+            <ul>
+                <li> <a href="{{route('all.subsubcategory')}}"><i class="bx bx-right-arrow-alt"></i>All SubsubCategory</a>
+                </li>
+                <li> <a href="{{route('add.subsubcategory')}}"><i class="bx bx-right-arrow-alt"></i>Add SubsubCategory</a>
+                </li>
+            </ul>
+        </li>
+        {{-- END SUB SUB CATEGORY --}}
+
         {{-- PRODUCT MANAGE --}}
         <li>
             <a href="javascript:;" class="has-arrow">

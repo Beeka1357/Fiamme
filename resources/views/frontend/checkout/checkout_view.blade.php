@@ -213,12 +213,12 @@
             <div class="payment ml-30">
                 <h4 class="mb-30">Payment</h4>
                 <div class="payment_option">
-                    <div class="custome-radio">
+                    <!-- <div class="custome-radio">
 
                         <input class="form-check-input" required="" type="radio" name="payment_option" value="stripe" id="exampleRadios3" checked="">
 
                         <label class="form-check-label" for="exampleRadios3" data-bs-toggle="collapse" data-target="#bankTranfer" aria-controls="bankTranfer">Stripe</label>
-                    </div>
+                    </div> -->
                     <div class="custome-radio">
 
                         <input class="form-check-input" required="" type="radio" name="payment_option" value="cash" id="exampleRadios4" checked="">

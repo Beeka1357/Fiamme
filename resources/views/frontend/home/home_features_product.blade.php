@@ -14,7 +14,7 @@ $featured = App\Models\Product::where('featured',1)->orderBy('id','DESC')->limit
             <div class="col-lg-3 d-none d-lg-flex wow animate__animated animate__fadeIn">
                 <div class="banner-img style-2">
                     <div class="banner-text">
-                        <h2 class="mb-100">Bring nature into your home</h2>
+                        <!-- <h2 class="mb-100">Bring nature into your home</h2> -->
                         <a href="shop-grid-right.html" class="btn btn-xs">Shop Now <i class="fi-rs-arrow-small-right"></i></a>
                     </div>
                 </div>
@@ -93,12 +93,12 @@ $featured = App\Models\Product::where('featured',1)->orderBy('id','DESC')->limit
                     </div>
                     @endif
 
-                    <div class="sold mt-15 mb-15">
+                    <!-- <div class="sold mt-15 mb-15">
                         <div class="progress mb-5">
                         <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
 
-                    </div>
+                    </div> -->
                     <a href="shop-cart.html" class="btn w-100 hover-up"><i class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
                 </div>
             </div>

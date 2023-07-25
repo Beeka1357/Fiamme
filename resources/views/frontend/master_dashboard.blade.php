@@ -27,6 +27,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
     <script src="https://js.stripe.com/v3/"></script>
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/custom.css') }}" />
+
 </head>
 
 <body>
@@ -248,7 +250,7 @@
             var id = $('#dproduct_id').val();
             var vendor = $('#vproduct_id').val();
             var color = $('#dcolor option:selected').text();
-            var size = $('#dsize option:selected').text();
+            var size = $('#prodSizeNumber').val();
             var quantity = $('#dqty').val();
             $.ajax({
                 type: "POST",

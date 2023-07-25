@@ -1,5 +1,5 @@
 @php
-$products = App\Models\Product::where('status',1)->orderBy('id','ASC')->limit(10)->get();
+$products = App\Models\Product::where('status',1)->orderBy('id','ASC')->limit(4)->get();
 $categories = App\Models\Category::orderBy('category_name','ASC')->get();
 @endphp
 
@@ -9,21 +9,21 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
         <div class="section-title style-2 wow animate__ animate__fadeIn animated" style="visibility: visible; animation-name: fadeIn;">
             <h3> New Products </h3>
             <ul class="nav nav-tabs links" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
+                <!-- <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="nav-tab-one" data-bs-toggle="tab" data-bs-target="#tab-one" type="button" role="tab" aria-controls="tab-one" aria-selected="true">All</button>
-                </li>
-                @foreach($categories as $category)
+                </li> -->
+                <!-- @foreach($categories as $category)
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="nav-tab-two" data-bs-toggle="tab" href="{{ $category->id }}" type="button" role="tab" aria-controls="tab-two" aria-selected="false">{{ $category->category_name }}</a>
                 </li>
-                @endforeach
+                @endforeach -->
         </div>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
                 <div class="row product-grid-4">
 
                     @foreach($products as $product)
-                    <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                    <div class="col-lg-3 col-md-4 col-12 col-sm-6">
                         <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
                             <div class="product-img-action-wrap">
                                 <div class="product-img product-img-zoom">
@@ -57,9 +57,9 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
                             </div>
                             <div class="product-content-wrap">
                                 <div class="product-category">
-                                    <a href="shop-grid-right.html">{{ $product['category_name'] }}</a>
+                                    <!-- <a href="shop-grid-right.html">{{ $product['category_name'] }}</a> -->
                                 </div>
-                                <h2><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"> {{ $product->product_name }} </a></h2> {{ $product->product_name }} </a></h2>
+                                <h2><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"> {{ $product->product_name }} | <span style="font-size:13px;">{{ $product->product_name }}</span>  </a> </h2>  </a></h2>
                                 @php
                                 $reviewcount = App\Models\Review::where('product_id',$product->id)->where('status',1)->latest()->get();
                                 $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1)->avg('rating');
@@ -86,7 +86,7 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
                 @if($product->vendor_id == NULL)
                 <span class="font-small text-muted">By <a href="vendor-details-1.html">Owner</a></span>
                 @else
-                <span class="font-small text-muted">By <a href="vendor-details-1.html">{{ $product['vendor']['name'] }}</a></span>
+                <!-- <span class="font-small text-muted">By <a href="vendor-details-1.html">{{ $product['vendor']['name'] }}</a></span> -->
 
                 @endif
 

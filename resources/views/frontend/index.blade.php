@@ -30,16 +30,16 @@
 
 
 <!-- TV Category -->
-
+<!-- 
 @foreach($cat as $c)
 <section class="product-tabs section-padding position-relative">
     <div class="container">
         <div class="section-title style-2 wow animate__animated animate__fadeIn">
             <h3>{{ $c->category_name }} Category </h3>
 
-        </div>
+         </div> -->
         <!--End nav-tabs-->
-        <div class="tab-content" id="myTabContent">
+        <!-- <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
                 <div class="row product-grid-4">
 
@@ -51,8 +51,8 @@
                                     <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}">
                                         <img class="default-img" src="{{ asset( $product->product_thambnail ) }}" alt="" />
 
-                                    </a>
-                                </div>
+                                    </a> -->
+                                <!-- </div>
                                 <div class="product-action-1">
                                     <a aria-label="Add To Wishlist" class="action-btn" id="{{ $product->id }}" onclick="addToWishList(this.id)"><i class="fi-rs-heart"></i></a>
 
@@ -65,12 +65,12 @@
                                 @php
                                 $amount = $product->selling_price - $product->discount_price;
                                 $discount = ($amount/$product->selling_price) * 100;
-                                @endphp
+                                @endphp -->
 
 
                                 <!--end product card-->
 
-
+<!-- 
                                 <div class="product-badges product-badges-position product-badges-mrg">
 
                                     @if($product->discount_price == NULL)
@@ -87,8 +87,8 @@
                                     <a href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
                                 </div>
                                 <h2><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"> {{ $product->product_name }} </a></h2>
-                                @php
-                                $reviewcount = App\Models\Review::where('product_id',$product->id)->where('status',1)->latest()->get();
+                                @php 
+                               $reviewcount = App\Models\Review::where('product_id',$product->id)->where('status',1)->latest()->get();
                                 $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1)->avg('rating');
                                 @endphp
 
@@ -101,8 +101,8 @@
                                     @elseif($avarage == 2 || $avarage < 3) <div class="product-rating" style="width: 40%">
                                 </div>
                                 @elseif($avarage == 3 || $avarage < 4) <div class="product-rating" style="width: 60%">
-                            </div>
-                            @elseif($avarage == 4 || $avarage < 5) <div class="product-rating" style="width: 80%">
+                            </div> -->
+                            <!-- @elseif($avarage == 4 || $avarage < 5) <div class="product-rating" style="width: 80%">
                         </div>
                         @elseif($avarage == 5 || $avarage < 5) <div class="product-rating" style="width: 100%">
                     </div>
@@ -116,11 +116,11 @@
                 @else
                 <span class="font-small text-muted">By <a href="vendor-details-1.html">{{ $product['vendor']['name'] }}</a></span>
 
-                @endif
+                @endif -->
 
 
 
-            </div>
+            <!-- </div>
             <div class="product-card-bottom">
 
                 @if($product->discount_price == NULL)
@@ -136,31 +136,31 @@
                 </div>
                 @endif
 
+ -->
 
-
-                <div class="add-cart">
+                <!-- <div class="add-cart">
                     <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
                 </div>
             </div>
         </div>
     </div>
-    </div>
+    </div> -->
     <!--end product card-->
-    @endforeach
+    <!-- @endforeach
 
-    </div>
+    </div> -->
     <!--End product-grid-4-->
-    </div>
+    <!-- </div>
 
 
-    </div>
+    </div> -->
     <!--End tab-content-->
-    </div>
+    <!-- </div>
 
 
 </section>
-@endforeach
-<!--End fashion Category -->
+@endforeach -->
+
 
 
 
@@ -175,14 +175,14 @@
             <div class="col-xl-3 col-lg-4 col-md-6 mb-sm-5 mb-md-0 wow animate__animated animate__fadeInUp" data-wow-delay="0">
                 <h4 class="section-title style-1 mb-30 animated animated"> Hot Deals </h4>
                 <div class="product-list-small animated animated">
-                    @foreach($hot_deals as $item)
+                    @foreach($hot_deals as $product)
                     <article class="row align-items-center hover-up">
                         <figure class="col-md-4 mb-0">
-                            <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"><img src="{{ asset( $item->product_thambnail ) }}" alt="" /></a>
+                            <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"><img src="{{ asset( $product->product_thambnail ) }}" alt="" /></a>
                         </figure>
                         <div class="col-md-8 mb-0">
                             <h6>
-                                <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"> {{ $item->product_name }} </a>
+                                <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"> {{ $product->product_name }} </a>
                             </h6>
                             <div class="product-rate-cover">
                                 <div class="product-rate d-inline-block">
@@ -190,16 +190,16 @@
                                 </div>
                                 <span class="font-small ml-5 text-muted"> (4.0)</span>
                             </div>
-                            @if($item->discount_price == NULL)
+                            @if($product->discount_price == NULL)
                             <div class="product-price">
-                                <span>₹{{ $item->selling_price }}</span>
+                                <span>₹{{ $product->selling_price }}</span>
 
                             </div>
 
                             @else
                             <div class="product-price">
-                                <span>₹{{ $item->discount_price }}</span>
-                                <span class="old-price">₹{{ $item->selling_price }}</span>
+                                <span>₹{{ $product->discount_price }}</span>
+                                <span class="old-price">₹{{ $product->selling_price }}</span>
                             </div>
                             @endif
                         </div>
@@ -211,14 +211,14 @@
             <div class="col-xl-3 col-lg-4 col-md-6 mb-md-0 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
                 <h4 class="section-title style-1 mb-30 animated animated"> Special Offer </h4>
                 <div class="product-list-small animated animated">
-                    @foreach($special_offer as $item)
+                    @foreach($special_offer as $product)
                     <article class="row align-items-center hover-up">
                         <figure class="col-md-4 mb-0">
-                            <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"><img src="{{ asset( $item->product_thambnail ) }}" alt="" /></a>
+                            <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"><img src="{{ asset( $product->product_thambnail ) }}" alt="" /></a>
                         </figure>
                         <div class="col-md-8 mb-0">
                             <h6>
-                                <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"> {{ $item->product_name }} </a>
+                                <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"> {{ $product->product_name }} </a>
                             </h6>
                             <div class="product-rate-cover">
                                 <div class="product-rate d-inline-block">
@@ -226,16 +226,16 @@
                                 </div>
                                 <span class="font-small ml-5 text-muted"> (4.0)</span>
                             </div>
-                            @if($item->discount_price == NULL)
+                            @if($product->discount_price == NULL)
                             <div class="product-price">
-                                <span>₹{{ $item->selling_price }}</span>
+                                <span>₹{{ $product->selling_price }}</span>
 
                             </div>
 
                             @else
                             <div class="product-price">
-                                <span>₹{{ $item->discount_price }}</span>
-                                <span class="old-price">₹{{ $item->selling_price }}</span>
+                                <span>₹{{ $product->discount_price }}</span>
+                                <span class="old-price">₹{{ $product->selling_price }}</span>
                             </div>
                             @endif
                         </div>
@@ -248,14 +248,14 @@
             <div class="col-xl-3 col-lg-4 col-md-6 mb-sm-5 mb-md-0 d-none d-lg-block wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
                 <h4 class="section-title style-1 mb-30 animated animated">Recently added</h4>
                 <div class="product-list-small animated animated">
-                    @foreach($new as $item)
+                    @foreach($new as $product)
                     <article class="row align-items-center hover-up">
                         <figure class="col-md-4 mb-0">
-                            <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"><img src="{{ asset( $item->product_thambnail ) }}" alt="" /></a>
+                            <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"><img src="{{ asset( $product->product_thambnail ) }}" alt="" /></a>
                         </figure>
                         <div class="col-md-8 mb-0">
                             <h6>
-                                <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"> {{ $item->product_name }} </a>
+                                <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"> {{ $product->product_name }} </a>
                             </h6>
                             <div class="product-rate-cover">
                                 <div class="product-rate d-inline-block">
@@ -263,16 +263,16 @@
                                 </div>
                                 <span class="font-small ml-5 text-muted"> (4.0)</span>
                             </div>
-                            @if($item->discount_price == NULL)
+                            @if($product->discount_price == NULL)
                             <div class="product-price">
-                                <span>₹{{ $item->selling_price }}</span>
+                                <span>₹{{ $product->selling_price }}</span>
 
                             </div>
 
                             @else
                             <div class="product-price">
-                                <span>₹{{ $item->discount_price }}</span>
-                                <span class="old-price">₹{{ $item->selling_price }}</span>
+                                <span>₹{{ $product->discount_price }}</span>
+                                <span class="old-price">₹{{ $product->selling_price }}</span>
                             </div>
                             @endif
                         </div>
@@ -285,14 +285,14 @@
             <div class="col-xl-3 col-lg-4 col-md-6 mb-sm-5 mb-md-0 d-none d-xl-block wow animate__animated animate__fadeInUp" data-wow-delay=".3s">
                 <h4 class="section-title style-1 mb-30 animated animated"> Special Deals </h4>
                 <div class="product-list-small animated animated">
-                    @foreach($special_deals as $item)
+                    @foreach($special_deals as $product)
                     <article class="row align-items-center hover-up">
                         <figure class="col-md-4 mb-0">
-                            <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"><img src="{{ asset( $item->product_thambnail ) }}" alt="" /></a>
+                            <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"><img src="{{ asset( $product->product_thambnail ) }}" alt="" /></a>
                         </figure>
                         <div class="col-md-8 mb-0">
                             <h6>
-                                <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"> {{ $item->product_name }} </a>
+                                <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"> {{ $product->product_name }} </a>
                             </h6>
                             <div class="product-rate-cover">
                                 <div class="product-rate d-inline-block">
@@ -300,16 +300,16 @@
                                 </div>
                                 <span class="font-small ml-5 text-muted"> (4.0)</span>
                             </div>
-                            @if($item->discount_price == NULL)
+                            @if($product->discount_price == NULL)
                             <div class="product-price">
-                                <span>₹{{ $item->selling_price }}</span>
+                                <span>₹{{ $product->selling_price }}</span>
 
                             </div>
 
                             @else
                             <div class="product-price">
-                                <span>₹{{ $item->discount_price }}</span>
-                                <span class="old-price">₹{{ $item->selling_price }}</span>
+                                <span>₹{{ $product->discount_price }}</span>
+                                <span class="old-price">₹{{ $product->selling_price }}</span>
                             </div>
                             @endif
                         </div>

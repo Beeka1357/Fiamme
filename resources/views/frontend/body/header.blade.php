@@ -64,7 +64,7 @@
                                     <img class="svgInject" alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-heart.svg') }}" />
                                     <span class="pro-count blue" id="wishQty">0 </span>
                                 </a>
-                                <a href="{{ route('wishlist') }}"><span class="lable">Wishlist</span></a>
+                                <a href="{{ route('wishlist') }}"><span class="lable"></span></a>
                             </div>
 
 
@@ -73,7 +73,7 @@
                                     <img alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-cart.svg') }}" />
                                     <span class="pro-count blue" id="cartQty">2</span>
                                 </a>
-                                <a href="{{ route('mycart') }}"><span class="lable">Cart</span></a>
+                                <a href="{{ route('mycart') }}"><span class="lable"></span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
 
 
@@ -126,12 +126,12 @@
                                 </div>
 
                                 @else
-                                <a href="{{ route('login') }}"><span class="lable ml-0">Login</span></a>
+                                <!-- <a href="{{ route('login') }}"><span class="lable ml-0">Login</span></a> -->
 
-                                <span class="lable" style="margin-left: 2px; margin-right: 2px;"> | </span>
+                                <!-- <span class="lable" style="margin-left: 2px; margin-right: 2px;"> | </span> -->
 
 
-                                <a href="{{ route('register') }}"><span class="lable ml-0">Register</span></a>
+                                <!-- <a href="{{ route('register') }}"><span class="lable ml-0">Register</span></a> -->
 
                                 @endauth
 
@@ -159,14 +159,14 @@
         <div class="container">
             <div class="header-wrap header-space-between position-relative">
                 <div class="logo logo-width-1 d-block d-lg-none">
-                    <a href="{{ url('/') }}"><img src="{{  asset($setting->logo)    }}" alt="logo" /></a>
+                    <a href="{{ url('/') }}"><img src="{{  asset($setting->logo)}}" alt="logo" /></a>
                 </div>
                 <div class="header-nav d-none d-lg-flex">
                     <div class="main-categori-wrap d-none d-lg-block">
-                        <a class="categories-button-active" href="#">
+                        <!-- <a class="categories-button-active" href="#">
                             <span class="fi-rs-apps"></span> All Categories
                             <i class="fi-rs-angle-down"></i>
-                        </a>
+                        </a> -->
                         <div class="categories-dropdown-wrap categories-dropdown-active-large font-heading">
                             <div class="d-flex categori-dropdown-inner">
                                 <ul>
@@ -212,54 +212,98 @@
                         <nav>
                             <ul>
 
-                                <li>
+                                <!-- <li>
                                     <a class="active" href="{{ url('/') }}">Home </a>
 
-                                </li>
+                                </li> -->
                                 @php
                                 $categories = App\Models\Category::orderBy('category_name','ASC')->limit(6)->get();
                                 @endphp
 
                                 @foreach($categories as $category)
-                                <li>
+                                <li class="position-static">
                                     <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}">{{ $category->category_name }} <i class="fi-rs-angle-down"></i></a>
                                     @php
                                     $subcategories = App\Models\SubCategory::where('category_id',$category->id)->orderBy('subcategory_name','ASC')->get();
                                     @endphp
-                                    <ul class="sub-menu">
+                                    @if($subcategories->count() > 0)
+                                    <ul class="mega-menu d-flex justify-content-between">
                                         @foreach($subcategories as $subcategory)
-                                        <li><a href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug) }}">{{ $subcategory->subcategory_name }}</a></li>
+                                        <li class="sub-mega-menu sub-mega-menu-width-10" style="display: flex; justify-content: space-between;">
+                                            <div>
+                                          
+                                            <a href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug) }}">{{ $subcategory->subcategory_name }}</a>
+                                            @php
+                                            $subsubcategory = App\Models\SubSubCategory::where('sub_category_id',$subcategory->id)->orderBy('subsubcategory_name','ASC')->get();
+                                            @endphp
+                                                <div class="offers">
+                                            @if ($subcategory->subcategory_slug == 'panties-pack-of-3')
+                                            <img src="{{ asset('frontend/assets/imgs/offer1.webp') }}" alt="" style="width:70%; margin-top:20px; ">
+                                            @endif
+                                            @if ($subcategory->subcategory_slug == 'premium-bras')
+                                            <img src="{{ asset('frontend/assets/imgs/offer2.webp') }}" alt="" style="width:70%; margin-top:20px;">
+                                            @endif
+                                            @if ($subcategory->subcategory_slug == 'printed-bras')
+                                            <img src="{{ asset('frontend/assets/imgs/offer3.webp') }}" alt="" style="width:70%; margin-top:20px;">
+                                            @endif
+                                            @if ($subcategory->subcategory_slug == 'trendy-lace-sets')
+                                            <img src="{{ asset('frontend/assets/imgs/offer4.webp') }}" alt="" style="width:70%; margin-top:20px;">
+                                            @endif
+                                                </div>
+                                            <ul>
+
+                                            @if ($subcategory->subcategory_slug == 'bridal')
+                                            <img src="{{ asset('frontend/assets/imgs/Bridal.webp') }}" alt="" style="width:50%; margin-top:20px;">
+                                            @endif
+                                            @if ($subcategory->subcategory_slug == 'new-arrival')
+                                            <img src="{{ asset('frontend/assets/imgs/newarrival.webp') }}" alt="" style="width:50%; margin-top:20px;">
+                                            @endif
+                                            @if ($subcategory->subcategory_slug == 'printed')
+                                            <img src="{{ asset('frontend/assets/imgs/Printed.webp') }}" alt="" style="width:50%; margin-top:20px;">
+                                            @endif
+                                            @foreach($subsubcategory as $subcatego)
+                                                <li><a href="shop-product-right.html"> {{ $subcatego->subsubcategory_name}}</a></li>
+                                               
+
+                                            @endforeach
+                                            </ul>
+                                            </div>
+                                            @if ($subcategory->subcategory_slug == 'sports-bra')
+                                            <img src="{{ asset('frontend/assets/imgs/sport.webp') }}" alt="" style="width:50%;">
+                                            @endif
+                                        </li>
                                         @endforeach
                                     </ul>
+                                    @endif
                                 </li>
                                 @endforeach
 
-                                <li class="position-static">
+                                <!-- <li class="position-static">
                                     <a href="#">Mega menu <i class="fi-rs-angle-down"></i></a>
                                     <ul class="mega-menu">
                                         <li class="sub-mega-menu sub-mega-menu-width-22">
                                             <a class="menu-title" href="#">Woman Clothing</a>
                                             <ul>
                                                 <li><a href="shop-product-right.html"></a></li>
-                                                <!-- <li><a href="shop-product-right.html">Fresh Vegetables</a></li>
+                                                <li><a href="shop-product-right.html">Fresh Vegetables</a></li>
                                                 <li><a href="shop-product-right.html">Herbs & Seasonings</a></li>
                                                 <li><a href="shop-product-right.html">Cuts & Sprouts</a></li>
                                                 <li><a href="shop-product-right.html">Exotic Fruits & Veggies</a></li>
-                                                <li><a href="shop-product-right.html">Packaged Produce</a></li> -->
+                                                <li><a href="shop-product-right.html">Packaged Produce</a></li>
                                             </ul>
                                         </li>
                                         <li class="sub-mega-menu sub-mega-menu-width-22">
                                             <a class="menu-title" href="#">Lingerie</a>
                                             <ul>
                                                 <li><a href="shop-product-right.html">Discount Products</a></li>
-                                                <!-- <li><a href="shop-product-right.html">Butter and Margarine</a></li>
+                                                <li><a href="shop-product-right.html">Butter and Margarine</a></li>
                                                 <li><a href="shop-product-right.html">Eggs Substitutes</a></li>
                                                 <li><a href="shop-product-right.html">Marmalades</a></li>
                                                 <li><a href="shop-product-right.html">Sour Cream</a></li>
-                                                <li><a href="shop-product-right.html">Cheese</a></li> -->
+                                                <li><a href="shop-product-right.html">Cheese</a></li>
                                             </ul>
                                         </li>
-                                        <!-- <li class="sub-mega-menu sub-mega-menu-width-22">
+                                        <li class="sub-mega-menu sub-mega-menu-width-22">
                                             <a class="menu-title" href="#">Meat & Seafood</a>
                                             <ul>
                                                 <li><a href="shop-product-right.html">Breakfast Sausage</a></li>
@@ -269,7 +313,7 @@
                                                 <li><a href="shop-product-right.html">Wild Caught Fillets</a></li>
                                                 <li><a href="shop-product-right.html">Crab and Shellfish</a></li>
                                             </ul>
-                                        </li> -->
+                                        </li>
                                         <li class="sub-mega-menu sub-mega-menu-width-34">
                                             <div class="menu-banner-wrap">
                                                 <a href="shop-product-right.html"><img src="{{ asset('frontend/assets/imgs/banner/banner-menu.png') }}" alt="Nest" /></a>
@@ -295,15 +339,15 @@
                                             </div>
                                         </li>
                                     </ul>
-                                </li>
-                                <li>
-                                    <a href="{{ route('home.blog') }}">Blog</a>
-                                    <!-- <ul class="sub-menu"> -->
-                                    <!-- <li><a href="blog-category-grid.html">Blog Category Grid</a></li>
+                                </li> -->
+                                <!-- <li>
+                                    <a href="{{ route('home.blog') }}">Blog</a> -->
+                                <!-- <ul class="sub-menu"> -->
+                                <!-- <li><a href="blog-category-grid.html">Blog Category Grid</a></li>
                                         <li><a href="blog-category-list.html">Blog Category List</a></li>
                                         <li><a href="blog-category-big.html">Blog Category Big</a></li>
                                         <li><a href="blog-category-fullwidth.html">Blog Category Wide</a></li> -->
-                                    <!-- <li>
+                                <!-- <li>
                                             <a href="#">Single Post <i class="fi-rs-angle-right"></i></a>
                                             <ul class="level-menu level-menu-modify">
                                                 <li><a href="blog-post-left.html">Left Sidebar</a></li>
@@ -311,9 +355,9 @@
                                                 <li><a href="blog-post-fullwidth.html">No Sidebar</a></li>
                                             </ul>
                                         </li> -->
-                                    <!-- </ul> -->
-                                </li>
-                                <li>
+                                <!-- </ul> -->
+                                <!-- </li> -->
+                                <!-- <li>
                                     <a href="#">Pages <i class="fi-rs-angle-down"></i></a>
                                     <ul class="sub-menu">
                                         <li><a href="page-about.html">About Us</a></li>
@@ -331,7 +375,7 @@
                                 </li>
                                 <li>
                                     <a href="page-contact.html">Contact</a>
-                                </li>
+                                </li> -->
                             </ul>
                         </nav>
                     </div>
@@ -354,50 +398,51 @@
                         <div class="header-action-icon-2">
                             <a href="{{ route('wishlist') }}">
                                 <img alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-heart.svg') }}" />
-                                <span class="pro-count white" id="wishQty">4</span>
+                                <span class="pro-count white" id="wishQty">0</span>
+                                
                             </a>
                         </div>
                         <div class="header-action-icon-2">
                             <a class="mini-cart-icon" href="{{ route('mycart') }}">
                                 <img alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-cart.svg') }}" />
-                                <span class="pro-count white" id="cartQty">2</span>
+                                <span class="pro-count white" id="cartQty">0</span>
                             </a>
                             <div class="cart-dropdown-wrap cart-dropdown-hm2">
-                                  <!--   // mini cart start with ajax -->
-                                    <div id="miniCart">
+                                <!--   // mini cart start with ajax -->
+                                <div id="miniCart">
 
-                                    </div>
+                                </div>
 
-                                    <!--   // End mini cart start with ajax -->
+                                <!--   // End mini cart start with ajax -->
                                 <!-- <ul> -->
-                                    <!-- <li> -->
-                                        <!-- <div class="shopping-cart-img">
+                                <!-- <li> -->
+                                <!-- <div class="shopping-cart-img">
                                             <a href="shop-product-right.html"><img alt="Nest" src="{{ asset('frontend/assets/imgs/shop/thumbnail-3.jpg') }}" /></a>
                                         </div> -->
-                                        <!-- <div class="shopping-cart-title">
+                                <!-- <div class="shopping-cart-title">
                                             <h4><a href="shop-product-right.html">Plain Striola Shirts</a></h4>
                                             <h3><span>1 × </span>$800.00</h3>
                                         </div> -->
-                                        <!-- <div class="shopping-cart-delete">
+                                <!-- <div class="shopping-cart-delete">
                                             <a href="#"><i class="fi-rs-cross-small"></i></a>
                                         </div> -->
-                                    <!-- </li> -->
-                                    <!-- <li> -->
-                                        <!-- <div class="shopping-cart-img">
+                                <!-- </li> -->
+                                <!-- <li> -->
+                                <!-- <div class="shopping-cart-img">
                                             <a href="shop-product-right.html"><img alt="Nest" src="{{ asset('frontend/assets/imgs/shop/thumbnail-4.jpg') }}" /></a>
                                         </div> -->
-                                        <!-- <div class="shopping-cart-title">
+                                <!-- <div class="shopping-cart-title">
                                             <h4><a href="shop-product-right.html">Macbook Pro 2022</a></h4>
                                             <h3><span>1 × </span>$3500.00</h3>
                                         </div> -->
-                                        <!-- <div class="shopping-cart-delete">
+                                <!-- <div class="shopping-cart-delete">
                                             <a href="#"><i class="fi-rs-cross-small"></i></a>
                                         </div> -->
-                                    <!-- </li> -->
+                                <!-- </li> -->
                                 <!-- </ul> -->
                                 <div class="shopping-cart-footer">
                                     <div class="shopping-cart-total">
-                                          <h4>Total <span id="cartSubTotal"> </span></h4>
+                                        <h4>Total <span id="cartSubTotal"> </span></h4>
                                     </div>
                                     <div class="shopping-cart-button">
                                         <a href="{{ route('mycart') }}">View cart</a>
@@ -467,9 +512,9 @@
                 <!-- mobile menu start -->
                 <nav>
                     <ul class="mobile-menu font-heading">
-                        <li class="menu-item-has-children">
+                        <!-- <li class="menu-item-has-children">
                             <a href="{{ url('/') }}">Home</a>
-                        </li>
+                        </li> -->
                         @php
                         $categories = App\Models\Category::orderBy('category_name','ASC')->limit(6)->get();
                         @endphp
@@ -499,8 +544,8 @@
                                 <li><a href="shop-checkout.html">Shop – Checkout</a></li>
                                 <li><a href="shop-compare.html">Shop – Compare</a></li> -->
                                 <!-- <li class="menu-item-has-children"> -->
-                                    <!-- <a href="#">Shop Invoice</a> -->
-                                    <!-- <ul class="dropdown">
+                                <!-- <a href="#">Shop Invoice</a> -->
+                                <!-- <ul class="dropdown">
                                         <li><a href="shop-invoice-1.html">Shop Invoice 1</a></li>
                                         <li><a href="shop-invoice-2.html">Shop Invoice 2</a></li>
                                         <li><a href="shop-invoice-3.html">Shop Invoice 3</a></li>
@@ -511,8 +556,8 @@
                                 <!-- </li> -->
                             </ul>
                         </li>
-@endforeach
-                        <li class="menu-item-has-children">
+                        @endforeach
+                        <!-- <li class="menu-item-has-children">
                             <a href="#">Mega menu</a>
                             <ul class="dropdown">
                                 <li class="menu-item-has-children">
@@ -543,11 +588,11 @@
                                     </ul>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="menu-item-has-children">
+                        </li> -->
+                        <!-- <li class="menu-item-has-children">
                             <a href="{{ route('home.blog') }}">Blog</a>
-                        </li>
-                        <li class="menu-item-has-children">
+                        </li> -->
+                        <!-- <li class="menu-item-has-children">
                             <a href="#">Pages</a>
                             <ul class="dropdown">
                                 <li><a href="page-about.html">About Us</a></li>
@@ -562,7 +607,7 @@
                                 <li><a href="page-terms.html">Terms of Service</a></li>
                                 <li><a href="page-404.html">404 Page</a></li>
                             </ul>
-                        </li>
+                        </li> -->
                         <!-- <li class="menu-item-has-children">
                             <a href="#">Language</a>
                             <ul class="dropdown">
@@ -577,14 +622,14 @@
                 <!-- mobile menu end -->
             </div>
             <div class="mobile-header-info-wrap">
-                <div class="single-mobile-header-info">
+                <!-- <div class="single-mobile-header-info">
                     <a href="page-contact.html"><i class="fi-rs-marker"></i> Our location </a>
+                </div> -->
+                <div class="single-mobile-header-info" style="display: flex; gap: 2px;">
+                    <a href="{{route('login')}}" style="display:flex;"><i class="fi-rs-user"></i>Log In /  <a href="{{route('register')}}"> Sign Up </a></a>
                 </div>
                 <div class="single-mobile-header-info">
-                    <a href="page-login.html"><i class="fi-rs-user"></i>Log In / Sign Up </a>
-                </div>
-                <div class="single-mobile-header-info">
-                    <a href="#"><i class="fi-rs-headphones"></i>(+01) - 2345 - 6789 </a>
+                    <a href="#"><i class="fi-rs-headphones"></i>{{ $setting->support_phone }} </a>
                 </div>
             </div>
             <div class="mobile-social-icon mb-50">
@@ -595,7 +640,9 @@
                 <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-pinterest-white.svg') }}" alt="" /></a>
                 <a href="{{ $setting->youtube }}"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-youtube-white.svg') }}" alt="" /></a>
             </div>
-            <div class="site-copyright">  <p class="font-sm mb-0">  <strong class="text-brand">Fiamme</strong> - {{ $setting->copyright }}</p></div>
+            <div class="site-copyright">
+                <p class="font-sm mb-0"> <strong class="text-brand">Fiamme</strong> - {{ $setting->copyright }}</p>
+            </div>
         </div>
     </div>
 </div>

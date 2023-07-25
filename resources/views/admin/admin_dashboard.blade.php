@@ -27,6 +27,8 @@
 	<link rel="stylesheet" href="{{asset('admin_backend/assets/css/semi-dark.css')}}" />
 	<link rel="stylesheet" href="{{asset('admin_backend/assets/css/header-colors.css')}}" />
 
+	<script src="{{asset('admin_backend/assets/js/jquery.min.js')}}"></script>
+
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -69,7 +71,7 @@
 	<!-- Bootstrap JS -->
 	<script src="{{ asset('admin_backend/assets/js/bootstrap.bundle.min.js') }}"></script>
 	<!--plugins-->
-	<script src="{{asset('admin_backend/assets/js/jquery.min.js')}}"></script>
+	
 	<script src="{{asset('admin_backend/assets/plugins/simplebar/js/simplebar.min.js')}}"></script>
 	<script src="{{asset('admin_backend/assets/plugins/metismenu/js/metisMenu.min.js')}}"></script>
 	<script src="{{asset('admin_backend/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js')}}"></script>
@@ -81,7 +83,7 @@
 	<script src="{{asset('admin_backend/assets/plugins/jquery-knob/excanvas.js')}}"></script>
 	<script src="{{asset('admin_backend/assets/plugins/jquery-knob/jquery.knob.js')}}"></script>
 	<script src="{{ asset('admin_backend/assets/js/validate.min.js') }}"></script>
-	
+	<!-- <script src="{{ asset('admin_backend/assets/js/jquery.min.js') }}"></script> -->
 	  <script>
 		  $(function() {
 			  $(".knob").knob();

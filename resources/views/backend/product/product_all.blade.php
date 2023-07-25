@@ -81,7 +81,7 @@
 					<a href="{{ route('product.active',$item->id) }}" class="btn btn-primary" title="Active"> <i class="fa-solid fa-thumbs-up"></i> </a>
 					@endif
 
-					<a href="{{ route('edit.product',$item->id) }}" class="btn btn-info" title="Edit Data"> <i class="fa fa-eye"></i> </a>
+					<a href="{{ route('product.add.color',$item->id) }}" class="btn btn-info" title="Edit Data"> <i class="fa fa-plus"></i> </a>
 				</td> 
 			</tr>
 			@endforeach

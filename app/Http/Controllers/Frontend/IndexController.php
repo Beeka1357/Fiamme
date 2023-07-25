@@ -20,16 +20,17 @@ class IndexController extends Controller
           $prod = [];
           foreach ($cat as $c) {
                $prod[$c->category_name] =  Product::where('status', 1)->where('category_id', $c->id)->orderBy('id', 'DESC')->limit(5)->get();
-               $hot_deals = Product::where('hot_deals', 1)->where('discount_price', '!=', NULL)->orderBy('id', 'DESC')->limit(3)->get();
+
+          }
+                         $hot_deals = Product::where('hot_deals', 1)->where('discount_price', '!=', NULL)->orderBy('id', 'DESC')->limit(3)->get();
 
                $special_offer = Product::where('special_offer', 1)->orderBy('id', 'DESC')->limit(3)->get();
                $new = Product::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
 
                $special_deals = Product::where('special_deals', 1)->orderBy('id', 'DESC')->limit(3)->get();
-          }
           // $skip_product_0 = Product::where('status',1)->where('category_id',$skip_category_0->id)->orderBy('id','DESC')->limit(5)->get();
 
-          return view('frontend.index', compact('cat', 'prod', 'hot_deals', 'special_offer', 'new', 'special_deals'));
+          return view('frontend.index', compact(['cat', 'prod', 'hot_deals', 'special_offer', 'new', 'special_deals']));
      }
      // End Method 
 

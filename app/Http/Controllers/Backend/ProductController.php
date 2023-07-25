@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
@@ -10,8 +11,12 @@ use App\Models\MultiImg;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\ProductByColor;
 use Carbon\Carbon;
 use Image;
+use File;
+
+
 
 class ProductController extends Controller
 {
@@ -56,6 +61,7 @@ class ProductController extends Controller
             'product_tags' => $request->product_tags,
             'product_size' => $request->product_size,
             'product_color' => $request->product_color,
+            'product_color_code' => $request->product_color_code,
 
             'selling_price' => $request->selling_price,
             'discount_price' => $request->discount_price,
@@ -169,6 +175,7 @@ class ProductController extends Controller
             'product_tags' => $request->product_tags,
             'product_size' => $request->product_size,
             'product_color' => $request->product_color,
+            'product_color_code' => $request->product_color_code,
 
             'selling_price' => $request->selling_price,
             'discount_price' => $request->discount_price,
@@ -328,6 +335,83 @@ class ProductController extends Controller
         return view('backend.product.product_stock', compact('products'));
     }
     // End Method 
+
+
+    // Add Product Color SECTION
+
+    public function AddProductByColor($id){
+        return view('backend.product.product_byColor',['product'=>Product::find($id)]);
+    }
+
+ 
+
+public function StoreProductByColor(Request $request)
+{
+    // echo '<pre>';print_r($request->all());
+    // die();
+    // Validate image uploads
+    // $validator = Validator::make($request->all(), [
+    //     'product_by_thambnail' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust max file size as needed
+    //     'product_by_multiImgs.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust max file size as needed
+    // ]);
+
+    // if ($validator->fails()) {
+    //     return redirect()->back()->withErrors($validator)->withInput();
+    // }
+    $data = $request->all();
+    $product_id=$data['id'];
+foreach ($data['prod'] as $key => $value) {
+// echo '<pre>';print_r($value['product_by_thambnail']);
+    // echo '<pre>';var_dump($value['product_by_thambnail']);
+    // die();
+
+    // Store main product thumbnail
+    $image = $value["product_by_thambnail"];
+    //   echo '<pre>';var_dump($image);die;
+    $name_gen = hexdec(uniqid()) . '.webp';
+    Image::make($image)->encode('webp',90)->resize(300, 300)->save(public_path('upload/products/ProductByColor/' . $name_gen));
+
+    $save_url = 'upload/products/ProductByColor/' . $name_gen;
+
+    // // Store product with main thumbnail
+    $product = ProductByColor::insertGetId([
+        'product_id' => $product_id,
+        'product_by_color' => $product_by_color,
+        'product_color_code' => $product_color_code,
+        'product_by_thambnail' => $save_url,
+        'created_at' => Carbon::now(),
+    ]);
+
+    // Store multiple images
+    $images = $value['product_by_multiImgs'];
+    foreach ($images as $img) {
+        $make_name = hexdec(uniqid()) . '.webp';
+        // Image::make($img)->resize(300, 300)->save(public_path('upload/products/ProductByColor/'.$product_id.'/'.$value['product_by_color'] .'/'. $make_name));
+        $directory = public_path('upload/products/ProductByColor/'.$product_id.'/'.$value['product_by_color']);
+            File::makeDirectory($directory, $mode = 0755, true, true);
+
+            Image::make($img)->resize(300, 300)->save($directory . '/' . $make_name);
+        $uploadPath = 'upload/products/ProductByColor/'.$product_id.'/'.$value['product_by_color'] .'/'. $make_name;
+        ProductByColor::insert([
+            'product_id' => $product_id,
+            'product_by_multiImgs' => $uploadPath,
+            'product_by_color' => $value['product_by_color'],
+            'product_color_code' => $value['product_color_code'],
+            'created_at' => Carbon::now(),
+        ]);
+    }
+}
+// die();
+
+    $notification = array(
+        'message' => 'Product Inserted Successfully',
+        'alert-type' => 'success'
+    );
+
+    return redirect()->route('all.product')->with($notification);
+}
+
+
 
 
 
