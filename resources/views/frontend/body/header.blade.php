@@ -31,7 +31,7 @@
                     </div>
                     <div class="header-action-right">
                         <div class="header-action-2">
-                            <div class="search-location">
+                            <!-- <div class="search-location">
                                 <form action="#">
                                     <select class="select-active">
                                         <option>Your Location</option>
@@ -50,7 +50,7 @@
                                         <option>New York</option>
                                     </select>
                                 </form>
-                            </div>
+                            </div> -->
 
                             <!-- <div class="header-action-icon-2">
                                 <a href="{{ route('compare') }}">

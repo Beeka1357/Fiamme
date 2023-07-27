@@ -55,7 +55,14 @@
 								<div class="form-group mb-3">
 									<label for="inputProductTitle" class="form-label">Product Color</label>
 									<input type="text" name="product_color" id="product_color" class="form-control" value=" ">
-									<input type="color" name="product_color_code" id="product_color_code">
+									<!-- <input type="color" name="product_color_code" id="product_color_code"> -->
+
+								</div>
+
+								<div class="form-group mb-3">
+									<label for="inputProductTitle" class="form-label">Group Code</label>
+									<input type="text" name="group_code" id="group_code" class="form-control" data-role="tagsinput" value=" ">
+									<!-- <input type="color" name="product_color_code" id="product_color_code"> -->
 
 								</div>
 

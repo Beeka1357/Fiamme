@@ -55,6 +55,11 @@
 				<input type="text" name="product_color" class="form-control " data-role="tagsinput" value="{{ $products->product_color }}">
 			  </div>
 
+              <div class="mb-3">
+				<label for="inputProductTitle" class="form-label">Group Code</label>
+				<input type="text" name="group_code" class="form-control " data-role="tagsinput" value="{{ $products->group_code }}">
+			  </div>
+
 
 
 			  <div class="form-group mb-3">

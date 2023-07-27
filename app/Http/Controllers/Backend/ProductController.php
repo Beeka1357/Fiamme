@@ -33,6 +33,7 @@ class ProductController extends Controller
         $activeVendor = User::where('status', 'active')->where('role', 'vendor')->latest()->get();
         $brands = Brand::latest()->get();
         $categories = Category::latest()->get();
+
         return view('backend.product.product_add', compact('brands', 'categories', 'activeVendor'));
     }
     // End Method 
@@ -61,6 +62,7 @@ class ProductController extends Controller
             'product_tags' => $request->product_tags,
             'product_size' => $request->product_size,
             'product_color' => $request->product_color,
+            'group_code' => $request->group_code,
             'product_color_code' => $request->product_color_code,
 
             'selling_price' => $request->selling_price,
@@ -79,6 +81,7 @@ class ProductController extends Controller
             'created_at' => Carbon::now(),
 
         ]);
+
 
         /// Multiple Image Upload From her //////
         $images = $request->file('multi_img');
@@ -175,6 +178,7 @@ class ProductController extends Controller
             'product_tags' => $request->product_tags,
             'product_size' => $request->product_size,
             'product_color' => $request->product_color,
+            'group_code' => $request->group_code,
             'product_color_code' => $request->product_color_code,
 
             'selling_price' => $request->selling_price,

@@ -54,8 +54,8 @@
                         <div class="detail-gallery">
                             <span class="zoom-icon"><i class="fi-rs-search"></i></span>
                             <!-- MAIN SLIDES -->
-
-                            <div class="colorChooseImageRed" style="display: none">
+                                
+                            <!-- <div class="colorChooseImageRed" style="display: none">
                                 <img src="{{asset('frontend/assets/banner1.jpg')}}" alt="">
                             </div>
                             <div class="colorChooseImageGreen" style="display: none">
@@ -63,7 +63,7 @@
                             </div>
                             <div class="colorChooseImageBlue" style="display: none">
                                 <img src="{{asset('frontend/assets/banner3.jpg')}}" alt="">
-                            </div>
+                            </div> -->
                             <div class="product-image-slider customShowImg">
 
                                 @foreach($multiImage as $img)
@@ -184,12 +184,12 @@
         
             <div style="display: flex; gap: 5px; align-items: center;">
             
-                <div onclick="changeImage('red', 0)" class="circle-divRed" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: red;">
+                <div  class="circle-divRed" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: red;">
 
                 </div>
                 
-                <div onclick="changeImage('green', 1)" class="circle-divGreen" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: green;"></div>
-                <div onclick="changeImage('blue', 2)" class="circle-divBlue" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: blue;"></div>
+                <div  class="circle-divGreen" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: green;"></div>
+                <div  class="circle-divBlue" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: blue;"></div>
             
             </div>
         </div>

@@ -49,6 +49,30 @@ class IndexController extends Controller
           $cat_id = $product->category_id;
           $relatedProduct = Product::where('category_id', $cat_id)->where('id', '!=', $id)->orderBy('id', 'DESC')->limit(4)->get();
 
+           // Get Group Products (Product Colors)
+     //    $groupProducts = array();
+     //    if(!empty($productsDetails['product_code'])){
+     //        $groupProducts = Product::select('category_id', 'product_slug')->where('category_id','!=',$cat_id)->where([
+     //            'product_code' => $productsDetails['product_code'], 'status' => 1]) ->get()->toArray();
+               
+     //    }
+     //    dd($groupProducts);
+     // Get Group Products (Product Colors)
+// $groupProducts = array();
+// if (!empty($product['group_code'])) {
+//     $groupProducts = Product::select('id', 'product_image')
+//         ->where('id', '!=', $id)
+//         ->where([
+//             'group_code' => $product['group_code'],
+//             'status' => 1
+//         ])
+//         ->get()
+//         ->toArray();
+// }
+
+// Debugging $groupProducts
+// dd($groupProducts);
+
 
           return view('frontend.product.product_details', compact('product', 'product_color', 'product_size', 'multiImage', 'relatedProduct'));
      } // End Method
