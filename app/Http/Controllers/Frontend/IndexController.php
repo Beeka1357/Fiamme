@@ -38,6 +38,7 @@ class IndexController extends Controller
      {
 
           $product = Product::findOrFail($id);
+          // dd($product);
           $color = $product->product_color;
           $product_color = explode(',', $color);
 
@@ -58,23 +59,36 @@ class IndexController extends Controller
      //    }
      //    dd($groupProducts);
      // Get Group Products (Product Colors)
-// $groupProducts = array();
-// if (!empty($product['group_code'])) {
-//     $groupProducts = Product::select('id', 'product_image')
-//         ->where('id', '!=', $id)
-//         ->where([
-//             'group_code' => $product['group_code'],
-//             'status' => 1
-//         ])
-//         ->get()
-//         ->toArray();
-// }
+$groupProducts = array();
+if (!empty($product['group_code'])) {
+    $groupProducts = Product::select('id', 'product_color','product_slug')
+        ->where('category_id', '=', $cat_id)
+        ->where([
+            'group_code' => $product['group_code'],
+            'status' => 1
+        ])
+        ->get();
+      
+}
+// dd($groupProducts);
+$colorProd = [];
+if($groupProducts->count() > 0){
+     foreach($groupProducts as $p){
+          if(!in_array($p->product_color,$colorProd)){
+               $colorProd[$p->product_color] = [
+                    'product_id' => $p->id,
+                    'product_color' => $p->product_color,
+                    'product_slug' => $p->product_slug
+               ];
+          }
+     }
+}
 
 // Debugging $groupProducts
-// dd($groupProducts);
+// dd($colorProd);
 
 
-          return view('frontend.product.product_details', compact('product', 'product_color', 'product_size', 'multiImage', 'relatedProduct'));
+          return view('frontend.product.product_details', compact('product', 'colorProd','product_color', 'product_size', 'multiImage', 'relatedProduct'));
      } // End Method
 
      public function CatWiseProduct(Request $request, $id, $slug)

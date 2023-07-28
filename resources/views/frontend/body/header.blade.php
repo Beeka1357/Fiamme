@@ -2,12 +2,32 @@
 <header class="header-area header-style-1 header-height-2">
     @php
     $setting = App\Models\SiteSetting::find(1);
+    if($setting){
+        $logo = $setting->logo;
+        $support_phone = $setting->support_phone;
+        $fb = $setting->facebook;
+        $twi = $setting->twitter;
+        $yt = $setting->youtube;
+        $copyright = $setting->copyright;
+    }else{
+        $logo = '';
+        $support_phone = 9090909090;
+        $fb = '';
+        $twi = '';
+        $yt = '';
+        $copyright = '';
+    }
     @endphp
     <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
         <div class="container">
             <div class="header-wrap">
                 <div class="logo logo-width-1">
-                    <a href="{{ url('/') }}"><img src="{{  asset($setting->logo)    }}" alt="logo" /></a>
+                <!-- if ($setting !== null) { -->
+    <!-- $setting = $setting->logo; -->
+                    <a href="{{ url('/') }}"><img src="{{asset($logo)}}" alt="logo" /></a>
+                <!-- } else { -->
+                    <!-- $setting = '{{asset('upload/logi/logo.webp')}}'; -->
+                <!-- } -->
                 </div>
                 @php
                 $categories = App\Models\Category::orderBy('category_name','ASC')->get();
@@ -159,7 +179,7 @@
         <div class="container">
             <div class="header-wrap header-space-between position-relative">
                 <div class="logo logo-width-1 d-block d-lg-none">
-                    <a href="{{ url('/') }}"><img src="{{  asset($setting->logo)}}" alt="logo" /></a>
+                    <a href="{{ url('/') }}"><img src="{{  asset($logo)}}" alt="logo" /></a>
                 </div>
                 <div class="header-nav d-none d-lg-flex">
                     <div class="main-categori-wrap d-none d-lg-block">
@@ -384,7 +404,7 @@
 
                 <div class="hotline d-none d-lg-flex">
                     <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-headphone.svg') }}" alt="hotline" />
-                    <p>{{ $setting->support_phone }}<span>24/7 Support Center</span></p>
+                    <p>{{ $support_phone }}<span>24/7 Support Center</span></p>
                 </div>
                 <div class="header-action-icon-2 d-block d-lg-none">
                     <div class="burger-icon burger-icon-white">
@@ -490,7 +510,7 @@
     <div class="mobile-header-wrapper-inner">
         <div class="mobile-header-top">
             <div class="mobile-header-logo">
-                <a href="{{ url('/') }}"><img src="{{ asset($setting->logo)  }}" alt="logo" /></a>
+                <a href="{{ url('/') }}"><img src="{{ asset($logo)  }}" alt="logo" /></a>
             </div>
             <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
                 <button class="close-style search-close">
@@ -629,19 +649,19 @@
                     <a href="{{route('login')}}" style="display:flex;"><i class="fi-rs-user"></i>Log In /  <a href="{{route('register')}}"> Sign Up </a></a>
                 </div>
                 <div class="single-mobile-header-info">
-                    <a href="#"><i class="fi-rs-headphones"></i>{{ $setting->support_phone }} </a>
+                    <a href="#"><i class="fi-rs-headphones"></i>{{ $support_phone }} </a>
                 </div>
             </div>
             <div class="mobile-social-icon mb-50">
                 <h6 class="mb-15">Follow Us</h6>
-                <a href="{{ $setting->facebook }}"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-facebook-white.svg') }}" alt="" /></a>
-                <a href="{{ $setting->twitter }}"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-twitter-white.svg') }}" alt="" /></a>
+                <a href="{{ $fb }}"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-facebook-white.svg') }}" alt="" /></a>
+                <a href="{{ $twi }}"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-twitter-white.svg') }}" alt="" /></a>
                 <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-instagram-white.svg') }}" alt="" /></a>
                 <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-pinterest-white.svg') }}" alt="" /></a>
-                <a href="{{ $setting->youtube }}"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-youtube-white.svg') }}" alt="" /></a>
+                <a href="{{ $yt }}"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-youtube-white.svg') }}" alt="" /></a>
             </div>
             <div class="site-copyright">
-                <p class="font-sm mb-0"> <strong class="text-brand">Fiamme</strong> - {{ $setting->copyright }}</p>
+                <p class="font-sm mb-0"> <strong class="text-brand">Fiamme</strong> - {{ $copyright }}</p>
             </div>
         </div>
     </div>

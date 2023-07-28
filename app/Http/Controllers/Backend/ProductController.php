@@ -45,7 +45,7 @@ class ProductController extends Controller
         $image = $request->file('product_thambnail');
 
         $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-        Image::make($image)->resize(800, 800)->save('upload/products/thambnail/' . $name_gen);
+        Image::make($image)->encode('webp', 90)->resize(300, 300)->save('upload/products/thambnail/' . $name_gen);
 
         $save_url = 'upload/products/thambnail/' . $name_gen;
 
@@ -88,8 +88,10 @@ class ProductController extends Controller
         // echo '<pre>';print_R($images);die;
         foreach ($images as $img) {
             $make_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
-            Image::make($img)->resize(800, 800)->save('upload/products/multi-image/' . $make_name);
-            $uploadPath = 'upload/products/multi-image/' . $make_name;
+            $directory = public_path('upload/products/multi-image/' . $product_id . '/' . strtolower($request->product_color));
+                    File::makeDirectory($directory, $mode = 0755, true, true);
+            Image::make($img)->encode('webp', 90)->resize(300, 300)->save('upload/products/multi-image/'.$product_id.'/'.strtolower($request->product_color).'/' . $make_name);
+            $uploadPath = 'upload/products/multi-image/'.$product_id.'/'.strtolower($request->product_color).'/' . $make_name;
             MultiImg::insert([
                 'product_id' => $product_id,
                 'photo_name' => $uploadPath,
@@ -113,7 +115,7 @@ class ProductController extends Controller
 
         foreach ($images as $img) {
             $make_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
-            \Image::make($img)->resize(800, 800)->save('upload/products/multi-image/' . $make_name);
+            \Image::make($img)->encode('webp', 90)->resize(300, 300)->save('upload/products/multi-image/' . $make_name);
             $uploadPath = 'upload/products/multi-image/' . $make_name;
 
             $img->photo_name = $uploadPath;
@@ -215,7 +217,7 @@ class ProductController extends Controller
 
         $image = $request->file('product_thambnail');
         $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-        Image::make($image)->resize(800, 800)->save('upload/products/thambnail/' . $name_gen);
+        Image::make($image)->encode('webp', 90)->resize(300, 300)->save('upload/products/thambnail/' . $name_gen);
         $save_url = 'upload/products/thambnail/' . $name_gen;
 
         if (file_exists($oldImage)) {
@@ -248,7 +250,7 @@ class ProductController extends Controller
             unlink($imgDel->photo_name);
 
             $make_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
-            Image::make($img)->resize(800, 800)->save('upload/products/multi-image/' . $make_name);
+            Image::make($img)->encode('webp', 90)->resize(300, 300)->save('upload/products/multi-image/' . $make_name);
             $uploadPath = 'upload/products/multi-image/' . $make_name;
 
             MultiImg::where('id', $id)->update([
@@ -343,82 +345,91 @@ class ProductController extends Controller
 
     // Add Product Color SECTION
 
-    public function AddProductByColor($id){
-        return view('backend.product.product_byColor',['product'=>Product::find($id)]);
+    public function AddProductByColor($id)
+    {
+        return view('backend.product.product_byColor', ['product' => Product::find($id)]);
     }
 
- 
 
-public function StoreProductByColor(Request $request)
-{
-    // echo '<pre>';print_r($request->all());
-    // die();
-    // Validate image uploads
-    // $validator = Validator::make($request->all(), [
-    //     'product_by_thambnail' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust max file size as needed
-    //     'product_by_multiImgs.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust max file size as needed
-    // ]);
 
-    // if ($validator->fails()) {
-    //     return redirect()->back()->withErrors($validator)->withInput();
-    // }
-    $data = $request->all();
-    $product_id=$data['id'];
-foreach ($data['prod'] as $key => $value) {
-// echo '<pre>';print_r($value['product_by_thambnail']);
-    // echo '<pre>';var_dump($value['product_by_thambnail']);
-    // die();
+    public function StoreProductByColor(Request $request)
+    {
+   
+        $data = $request->all();
+        // dd($data);
+        $product_id = $data['id'];
+        $product = Product::find($product_id);
+    
+        foreach ($data['prod'] as $key => $value) {
+            if (isset($value["product_by_thambnail"])) {
+   
+                // Store main product thumbnail
+                $image = $value["product_by_thambnail"];
+  
+                $name_gen = hexdec(uniqid()) . '.webp';
+                Image::make($image)->encode('webp', 90)->resize(300, 300)->save(public_path('upload/products/thambnail/' . $name_gen));
 
-    // Store main product thumbnail
-    $image = $value["product_by_thambnail"];
-    //   echo '<pre>';var_dump($image);die;
-    $name_gen = hexdec(uniqid()) . '.webp';
-    Image::make($image)->encode('webp',90)->resize(300, 300)->save(public_path('upload/products/ProductByColor/' . $name_gen));
+                $save_url = 'upload/products/thambnail/' . $name_gen;
 
-    $save_url = 'upload/products/ProductByColor/' . $name_gen;
+                // // Store product with main thumbnail
+                $prod_id = Product::insert([
 
-    // // Store product with main thumbnail
-    $product = ProductByColor::insertGetId([
-        'product_id' => $product_id,
-        'product_by_color' => $product_by_color,
-        'product_color_code' => $product_color_code,
-        'product_by_thambnail' => $save_url,
-        'created_at' => Carbon::now(),
-    ]);
+                    'brand_id' => $product['brand_id'],
+                    'category_id' => $product['category_id'],
+                    'subcategory_id' => $product['subcategory_id'],
+                    'product_name' => $product['product_name'],
+                    'product_slug' => strtolower(str_replace(' ', '-', $product['product_name'])),
 
-    // Store multiple images
-    $images = $value['product_by_multiImgs'];
-    foreach ($images as $img) {
-        $make_name = hexdec(uniqid()) . '.webp';
-        // Image::make($img)->resize(300, 300)->save(public_path('upload/products/ProductByColor/'.$product_id.'/'.$value['product_by_color'] .'/'. $make_name));
-        $directory = public_path('upload/products/ProductByColor/'.$product_id.'/'.$value['product_by_color']);
-            File::makeDirectory($directory, $mode = 0755, true, true);
+                    'product_code' => $product['product_code'],
+                    'product_qty' => $product['product_qty'],
+                    'product_tags' => $product['product_tags'],
+                    'product_size' => $product['product_size'],
+                    'product_color' => $value['product_by_color'],
+                    'group_code' => $product['group_code'],
+                    'product_color_code' => '',
 
-            Image::make($img)->resize(300, 300)->save($directory . '/' . $make_name);
-        $uploadPath = 'upload/products/ProductByColor/'.$product_id.'/'.$value['product_by_color'] .'/'. $make_name;
-        ProductByColor::insert([
-            'product_id' => $product_id,
-            'product_by_multiImgs' => $uploadPath,
-            'product_by_color' => $value['product_by_color'],
-            'product_color_code' => $value['product_color_code'],
-            'created_at' => Carbon::now(),
-        ]);
+                    'selling_price' => $product['selling_price'],
+                    'discount_price' => $product['discount_price'],
+                    'short_descp' => $product['short_descp'],
+                    'long_descp' => $product['long_descp'],
+
+                    'hot_deals' => $product['hot_deals'],
+                    'featured' => $product['featured'],
+                    'special_offer' => $product['special_offer'],
+                    'special_deals' => $product['special_deals'],
+
+                    'product_thambnail' => $save_url,
+                    'vendor_id' => $product['vendor_id'],
+                    'status' => 1,
+                    'created_at' => Carbon::now(),
+
+                ]);
+
+                // Store multiple images
+                $images = $value['product_by_multiImgs'];
+                foreach ($images as $img) {
+                    $make_name = hexdec(uniqid()) . '.webp';
+                    $directory = public_path('upload/products/multi-image/' . $product_id . '/' . strtolower($value['product_by_color']));
+                    File::makeDirectory($directory, $mode = 0755, true, true);
+
+                    Image::make($img)->resize(300, 300)->save($directory . '/' . $make_name);
+                    $uploadPath = 'upload/products/multi-image/' . $product_id . '/' . strtolower($value['product_by_color']) . '/' . $make_name;
+                    MultiImg::insert([
+                        'product_id' => $prod_id,
+                        'photo_name' => $uploadPath,
+                        
+                        'created_at' => Carbon::now(),
+                    ]);
+                }
+            }
+        }
+        // die();
+
+        $notification = array(
+            'message' => 'Product Inserted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.product')->with($notification);
     }
-}
-// die();
-
-    $notification = array(
-        'message' => 'Product Inserted Successfully',
-        'alert-type' => 'success'
-    );
-
-    return redirect()->route('all.product')->with($notification);
-}
-
-
-
-
-
-
-
 }

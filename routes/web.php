@@ -360,7 +360,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/seo/setting/update' , 'SeoSettingUpdate')->name('seo.setting.update');
     });
 
-
+    // Route::get('/site/setting/update', [SiteSettingController::class,'SiteSettingUpdate'])->name('site.setting.update');
 
 
     // Active user and vendor All Route 

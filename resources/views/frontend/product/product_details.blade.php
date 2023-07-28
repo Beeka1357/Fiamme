@@ -183,14 +183,12 @@
             </select> -->
         
             <div style="display: flex; gap: 5px; align-items: center;">
-            
-                <div  class="circle-divRed" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: red;">
-
-                </div>
-                
-                <div  class="circle-divGreen" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: green;"></div>
+            @foreach($colorProd as $p)
+                <a href="{{url('')}}/product/details/{{$p['product_id']}}/{{$p['product_slug']}}"><div  class="circle-divRed" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: {{$p['product_color']}};"></div></a>
+            @endforeach
+                <!-- <div  class="circle-divGreen" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: green;"></div>
                 <div  class="circle-divBlue" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: blue;"></div>
-            
+             -->
             </div>
         </div>
 

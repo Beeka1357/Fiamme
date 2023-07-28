@@ -30,7 +30,7 @@ class SiteSettingController extends Controller
 
             $image = $request->file('logo');
             $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(180, 56)->save('upload/logo/' . $name_gen);
+            Image::make($image)->encode('webp', 90)->resize(180, 56)->save('upload/logo/' . $name_gen);
             $save_url = 'upload/logo/' . $name_gen;
 
 
