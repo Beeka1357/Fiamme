@@ -104,7 +104,7 @@
 				  </div>
 
 
-				  <div class="form-group col-12">
+				  <!-- <div class="form-group col-12">
 					<label for="inputProductType" class="form-label">Product Brand</label>
 					<select name="brand_id" class="form-select" id="inputProductType">
 						<option></option>
@@ -112,7 +112,7 @@
                         <option value="{{ $brand->id }}" {{ $brand->id == $products->brand_id ? 'selected' : '' }} >{{ $brand->brand_name }}</option>
 						 @endforeach
 					  </select>
-				  </div>
+				  </div> -->
 
 				  <div class="form-group col-12">
 					<label for="inputVendor" class="form-label">Product Category</label>

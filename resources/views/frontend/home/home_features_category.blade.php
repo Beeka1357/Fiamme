@@ -1,5 +1,5 @@
- @php
-$categories = App\Models\Category::orderBy('category_name','ASC')->get();
+@php
+$categories = App\Models\Category::orderBy('category_name','ASC')->limit(6)->get();
 @endphp
 
 
@@ -21,7 +21,7 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
                     <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}"><img src="{{ asset($category->category_image ) }}" alt="" /></a>
                     </figure>
 
-                    <h6><a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}">{{ $category->category_name }}</a></h6>
+                    <!-- <h6><a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}">{{ $category->category_name }}</a></h6> -->
 
                     @php
                     $products = App\Models\Product::where('category_id',$category->id)->get();

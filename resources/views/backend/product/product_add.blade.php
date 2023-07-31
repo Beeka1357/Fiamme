@@ -61,7 +61,7 @@
 
 								<div class="form-group mb-3">
 									<label for="inputProductTitle" class="form-label">Group Code</label>
-									<input type="text" name="group_code" id="group_code" class="form-control" data-role="tagsinput" value=" ">
+									<input type="text" name="group_code" id="group_code" class="form-control" data-role="tagsinput" value=" "> 
 									<!-- <input type="color" name="product_color_code" id="product_color_code"> -->
 
 								</div>
@@ -120,7 +120,7 @@
 										<label for="inputStarPoints" class="form-label">Product Quantity</label>
 										<input type="text" name="product_qty" class="form-control" id="inputStarPoints" placeholder="00.00">
 									</div>
-									<div class="form-group col-12">
+									<!-- <div class="form-group col-12">
 										<label for="inputProductType" class="form-label">Product Brand</label>
 										<select name="brand_id" class="form-select" id="inputProductType">
 											<option></option>
@@ -128,7 +128,7 @@
 											<option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
 											@endforeach
 										</select>
-									</div>
+									</div> -->
 									<div class="form-group col-12">
 										<label for="inputVendor" class="form-label">Product Category</label>
 										<select name="category_id" class="form-select" id="inputVendor">

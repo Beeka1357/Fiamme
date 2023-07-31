@@ -19,7 +19,7 @@
             </a>
         </li>
         {{-- BRAND --}}
-        <li>
+        <!-- <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='bx bx-home-circle'></i>
                 </div>
@@ -31,7 +31,7 @@
                 <li> <a href="{{route('add.brand')}}"><i class="bx bx-right-arrow-alt"></i>Add Brand</a>
                 </li>
             </ul>
-        </li>
+        </li> -->
         {{-- END BRAND --}}
 
         {{-- CATEGORY --}}

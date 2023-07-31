@@ -2363,7 +2363,7 @@ input.qty-val {
 
 .card-2 {
   position: relative;
-  background: #e03f93e8;
+  /* background: #e03f93e8; */
   text-align: center;
   /* border: 1px solid #F4F6FA; */
   border-radius: 10px;
@@ -8767,7 +8767,7 @@ span.fi-rs-apps {
 }
 
 .main-menu.main-menu-padding-1 > nav > ul > li {
-  padding: 0 15px;
+  padding: 0 25px !important;
 }
 
 .main-menu.main-menu-padding-1 > nav > ul > li:first-child {

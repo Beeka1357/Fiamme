@@ -72,7 +72,7 @@ if (!empty($product['group_code'])) {
 }
 // dd($groupProducts);
 $colorProd = [];
-if($groupProducts->count() > 0){
+if(count($groupProducts) > 0){
      foreach($groupProducts as $p){
           if(!in_array($p->product_color,$colorProd)){
                $colorProd[$p->product_color] = [
@@ -85,7 +85,7 @@ if($groupProducts->count() > 0){
 }
 
 // Debugging $groupProducts
-// dd($colorProd);
+//  dd($product);
 
 
           return view('frontend.product.product_details', compact('product', 'colorProd','product_color', 'product_size', 'multiImage', 'relatedProduct'));

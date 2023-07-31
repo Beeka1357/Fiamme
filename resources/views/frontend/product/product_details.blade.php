@@ -181,15 +181,21 @@
                 <option value="{{ $color }}">{{ ucwords($color)  }}</option>
                 @endforeach 
             </select> -->
-        
             <div style="display: flex; gap: 5px; align-items: center;">
-            @foreach($colorProd as $p)
-                <a href="{{url('')}}/product/details/{{$p['product_id']}}/{{$p['product_slug']}}"><div  class="circle-divRed" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: {{$p['product_color']}};"></div></a>
-            @endforeach
-                <!-- <div  class="circle-divGreen" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: green;"></div>
-                <div  class="circle-divBlue" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: blue;"></div>
-             -->
-            </div>
+            @if(count($colorProd) ==  0)
+            <a href="{{url('')}}/product/details/{{$product->id}}/{{$product->product_slug}}">
+            <div class="circle-divRed" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: {{$product->product_color}};"></div>
+        </a>
+        @else
+    @foreach($colorProd as $p)
+        <a href="{{url('')}}/product/details/{{$p['product_id']}}/{{$p['product_slug']}}">
+            <div class="circle-divRed" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: {{$p['product_color']}};"></div>
+        </a>
+    @endforeach
+    @endif
+    <!-- <div class="circle-divGreen" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: green;"></div>
+    <div class="circle-divBlue" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: blue;"></div> -->
+</div>
         </div>
 
       
@@ -220,7 +226,7 @@
 
             </ul>
             <ul class="float-start">
-                <li class="mb-5">Brand: <span class="text-brand">{{ $product['brand']['brand_name'] }}</span></li>
+               
                 <li class="mb-5">Product Code: <a href="#">{{ $product->product_code }}</a></li>
                 <li class="mb-5">Tags: <a href="#" rel="tag"> {{ $product->product_tags }}</a></li>
                 <li>Stock:<span class="in-stock text-brand ml-5">({{ $product->product_qty }}) Items In Stock</span></li>
@@ -586,7 +592,7 @@
                         </div>
                     </div>
                     <div class="product-content-wrap">
-                        <h2><a href="shop-product-right.html" tabindex="0">{{ $product->product_name }}</a></h2>
+                        <h2><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}" tabindex="0">{{ $product->product_name }}</a></h2>
                         <div class="rating-result" title="90%">
                             <span> </span>
                         </div>

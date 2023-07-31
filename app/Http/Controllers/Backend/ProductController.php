@@ -41,7 +41,7 @@ class ProductController extends Controller
     public function StoreProduct(Request $request)
     {
 
-
+// echo'<pre>';print_r($request->all());die;
         $image = $request->file('product_thambnail');
 
         $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
@@ -90,7 +90,7 @@ class ProductController extends Controller
             $make_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
             $directory = public_path('upload/products/multi-image/' . $product_id . '/' . strtolower($request->product_color));
                     File::makeDirectory($directory, $mode = 0755, true, true);
-            Image::make($img)->encode('webp', 90)->resize(300, 300)->save('upload/products/multi-image/'.$product_id.'/'.strtolower($request->product_color).'/' . $make_name);
+            Image::make($img)->resize(300, 300)->save('upload/products/multi-image/'.$product_id.'/'.strtolower($request->product_color).'/' . $make_name);
             $uploadPath = 'upload/products/multi-image/'.$product_id.'/'.strtolower($request->product_color).'/' . $make_name;
             MultiImg::insert([
                 'product_id' => $product_id,
@@ -115,7 +115,7 @@ class ProductController extends Controller
 
         foreach ($images as $img) {
             $make_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
-            \Image::make($img)->encode('webp', 90)->resize(300, 300)->save('upload/products/multi-image/' . $make_name);
+            \Image::make($img)->resize(300, 300)->save('upload/products/multi-image/' . $make_name);
             $uploadPath = 'upload/products/multi-image/' . $make_name;
 
             $img->photo_name = $uploadPath;
