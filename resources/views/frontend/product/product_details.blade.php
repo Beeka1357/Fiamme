@@ -175,7 +175,7 @@
         
         <div class="attr-detail attr-size mb-30">
             <strong class="mr-10" style="width:50px;">Color : </strong>
-            <!-- <select class="form-control unicase-form-control" id="dcolor">
+            <!-- <select class="form-control unicase-form-control" id="">
                 <option selected="" disabled="">--Choose Color--</option>
                  @foreach($product_color as $color)
                 <option value="{{ $color }}">{{ ucwords($color)  }}</option>
@@ -184,12 +184,12 @@
             <div style="display: flex; gap: 5px; align-items: center;">
             @if(count($colorProd) ==  0)
             <a href="{{url('')}}/product/details/{{$product->id}}/{{$product->product_slug}}">
-            <div class="circle-divRed" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: {{$product->product_color}};"></div>
+            <div class="circle-divRed"  data-color="{{$product->product_color}}" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: {{$product->product_color}};"></div>
         </a>
         @else
     @foreach($colorProd as $p)
         <a href="{{url('')}}/product/details/{{$p['product_id']}}/{{$p['product_slug']}}">
-            <div class="circle-divRed" style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: {{$p['product_color']}};"></div>
+            <div class="circle-divRed"  data-color="{{$p['product_color']}}"  style="cursor: pointer; width: 24px; height: 24px; border-radius: 50%; background-color: {{$p['product_color']}};"></div>
         </a>
     @endforeach
     @endif
@@ -207,6 +207,7 @@
                 <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
             </div>
             <div class="product-extra-link2">
+                <input type="hidden" id="dcolor" value="{{$product->product_color}}">
                 <input type="hidden" id="dproduct_id" value="{{ $product->id }}">
                 <input type="hidden" id="vproduct_id" value="{{ $product->vendor_id }}">
                 <button type="submit" class="button button-add-to-cart" onclick="addToCartDetails()"><i class="fi-rs-shopping-cart"></i>Add to cart</button>

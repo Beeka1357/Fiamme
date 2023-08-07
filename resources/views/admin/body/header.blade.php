@@ -11,11 +11,11 @@
             </div>
             <div class="top-menu ms-auto">
                 <ul class="navbar-nav align-items-center">
-                    <li class="nav-item mobile-search-icon">
+                    <!-- <li class="nav-item mobile-search-icon">
                         <a class="nav-link" href="#">	<i class='bx bx-search'></i>
                         </a>
-                    </li>
-                    <li class="nav-item dropdown dropdown-large">
+                    </li> -->
+                    <!-- <li class="nav-item dropdown dropdown-large">
                         <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">	<i class='bx bx-category'></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
@@ -52,7 +52,7 @@
                                 </div>
                             </div>
                         </div>
-                    </li>
+                    </li> -->
                     <li class="nav-item dropdown dropdown-large">
                         <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span class="alert-count">7</span>
                             <i class='bx bx-bell'></i>
@@ -341,12 +341,12 @@
                     </li>
                     <li><a class="dropdown-item" href="{{ route('admin.change.password') }}"><i class="bx bx-cog"></i><span>Change Password</span></a>
                     </li>
-                    <li><a class="dropdown-item" href="javascript:;"><i class='bx bx-home-circle'></i><span>Dashboard</span></a>
+                    <li><a class="dropdown-item" href="{{route('admin.dashboard')}}"><i class='bx bx-home-circle'></i><span>Dashboard</span></a>
                     </li>
-                    <li><a class="dropdown-item" href="javascript:;"><i class='bx bx-dollar-circle'></i><span>Earnings</span></a>
+                    <!-- <li><a class="dropdown-item" href="javascript:;"><i class='bx bx-dollar-circle'></i><span>Earnings</span></a>
                     </li>
                     <li><a class="dropdown-item" href="javascript:;"><i class='bx bx-download'></i><span>Downloads</span></a>
-                    </li>
+                    </li> -->
                     <li>
                         <div class="dropdown-divider mb-0"></div>
                     </li>

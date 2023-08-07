@@ -199,7 +199,8 @@
             var product_name = $('#pname').text();
             var id = $('#product_id').val();
             var vendor = $('#pvendor_id').text();
-            var color = $('#color option:selected').text();
+            var color = $('#dcolor').val();
+            console.log(color);
             var size = $('#size option:selected').text();
             var quantity = $('#qty').val();
             $.ajax({
@@ -245,13 +246,15 @@
         /// End Add To Cart Product
 
         /// Start Details Page Add To Cart Product 
-        function addToCartDetails() {
+        function addToCartDetails(e) {
             var product_name = $('#dpname').text();
             var id = $('#dproduct_id').val();
             var vendor = $('#vproduct_id').val();
-            var color = $('#dcolor option:selected').text();
+            var color = $('#dcolor').val();
+            console.log(color);
             var size = $('#prodSizeNumber').val();
             var quantity = $('#dqty').val();
+            
             $.ajax({
                 type: "POST",
                 dataType: 'json',
@@ -418,42 +421,45 @@
                 dataType: 'json',
                 url: "/get-wishlist-product/",
                 success: function(response) {
+                    console.log(response);
                     $('#wishQty').text(response.wishQty);
                     var rows = ""
                     $.each(response.wishlist, function(key, value) {
-                        rows += `<tr class="pt-30">
-                        <td class="custome-checkbox pl-30">
+                        rows += '<tr class="pt-30">';
+                        rows += '<td class="custome-checkbox pl-30">';                            
+                        rows += ' </td>';
+                        rows += ' <td class="image product-thumbnail pt-40"><img src="/'+value.product.product_thambnail+'" alt="#" /></td>';
+                        rows += ' <td class="product-des product-name">';
+                        rows += ' <h6><a class="product-name mb-10" href="shop-product-right.html">'+value.product.product_name+'</a></h6>';
+                        rows += '  <div class="product-rate-cover">';
+                        rows += '    <div class="product-rate d-inline-block">';
+                        rows += '         <div class="product-rating" style="width: 90%"></div>';
+                        rows += '      </div>';
+                        rows += '      <span class="font-small ml-5 text-muted"> (4.0)</span>';
+                        rows += '    </div>';
+                        rows += '</td>';
+                        rows += ' <td class="price" data-title="Price">';
+                          if(value.product.discount_price == null){
+                            rows += '<h3 class="text-brand">₹'+value.product.selling_price+'</h3>';
+                          }else{
+                            rows += '<h3 class="text-brand">₹'+value.product.discount_price+'</h3>';
+                          }
+                        
                             
-                        </td>
-                        <td class="image product-thumbnail pt-40"><img src="/${value.product.product_thambnail}" alt="#" /></td>
-                        <td class="product-des product-name">
-                            <h6><a class="product-name mb-10" href="shop-product-right.html">${value.product.product_name} </a></h6>
-                            <div class="product-rate-cover">
-                                <div class="product-rate d-inline-block">
-                                    <div class="product-rating" style="width: 90%"></div>
-                                </div>
-                                <span class="font-small ml-5 text-muted"> (4.0)</span>
-                            </div>
-                        </td>
-                        <td class="price" data-title="Price">
-                        ${value.product.discount_price == null
-                        ? `<h3 class="text-brand">₹${value.product.selling_price}</h3>`
-                        :`<h3 class="text-brand">₹${value.product.discount_price}</h3>`
-                        }
-                            
-                        </td>
-                        <td class="text-center detail-info" data-title="Stock">
-                            ${value.product.product_qty > 0 
-                                ? `<span class="stock-status in-stock mb-0"> In Stock </span>`
-                                :`<span class="stock-status out-stock mb-0">Stock Out </span>`
+                        rows += '  </td>';
+                        rows += '<td class="text-center detail-info" data-title="Stock">';
+                            if(value.product.product_qty > 0 ){
+                                rows += '<span class="stock-status in-stock mb-0"> In Stock </span>';
+                            }else{
+                                rows += '<span class="stock-status out-stock mb-0">Stock Out </span>';
                             } 
                            
-                        </td>
+                            rows += ' </td>';
                        
-                        <td class="action text-center" data-title="Remove">
-                        <a type="submit" class="text-body" id="${value.id}" onclick="wishlistRemove(this.id)" ><i class="fi-rs-trash"></i></a>
-                        </td>
-                    </tr> `
+                            rows += '<td class="action text-center" data-title="Remove">';;
+                            rows += '   <a type="submit" class="text-body" id="'+value.id+'" onclick="wishlistRemove(this.id)" ><i class="fi-rs-trash"></i></a>';
+                            rows += '  </td>';               
+                             rows += '   </tr> ';
                     });
                     $('#wishlist').html(rows);
                 }
@@ -653,10 +659,11 @@
                 url: '/get-cart-product',
                 dataType: 'json',
                 success: function(response) {
-                    // console.log(response)
+                console.log(response)
 
                     var rows = ""
                     $.each(response.carts, function(key, value) {
+                        console.log(value.options.product_color);
                         rows += `<tr class="pt-30">
                                 <td class="custome-checkbox pl-30">
                                     
@@ -670,7 +677,7 @@
                                     <h4 class="text-body">₹${value.price} </h4>
                                 </td>
                                 <td class="price" data-title="Price">
-                                ${value.options.color == null
+                                ${value.options.color == ""
                                     ? `<span>.... </span>`
                                     : `<h6 class="text-body">${value.options.color} </h6>`
                                 } 

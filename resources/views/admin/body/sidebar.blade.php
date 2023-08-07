@@ -1,10 +1,10 @@
 <div class="sidebar-wrapper" data-simplebar="true">
     <div class="sidebar-header">
         <div>
-            <img src="{{asset('admin_backend/assets/images/logo-icon.png')}}" class="logo-icon" alt="logo icon">
+            <!-- <img src="{{asset('upload/logo/logo.webp')}}" class="logo-icon" alt="logo icon"> -->
         </div>
         <div>
-            <h4 class="logo-text">Admin</h4>
+            <h4 class="logo-text"> <img src="{{asset('upload/logo/logo.webp')}}" class="logo-icon" alt="logo icon"></h4>
         </div>
         <div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
         </div>
@@ -101,7 +101,7 @@
 
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bx bx-category"></i>
+                <div class="parent-icon"><i class="fa-sharp fa-solid fa-sliders"></i>
                 </div>
                 <div class="menu-title">Slider Manage</div>
             </a>
@@ -117,7 +117,7 @@
         {{-- START COUPON --}}
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bx bx-category"></i>
+                <div class="parent-icon"><i class="fa-solid fa-gift"></i>
                 </div>
                 <div class="menu-title">Coupon System</div>
             </a>
@@ -135,7 +135,7 @@
         {{-- Shipping Area Start  --}}
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bx bx-category"></i>
+                <div class="parent-icon"><i class="fa-solid fa-truck-fast"></i>
                 </div>
                 <div class="menu-title">Shipping Area </div>
             </a>
@@ -157,7 +157,7 @@
     {{-- BANNER --}}
     <li>
         <a href="javascript:;" class="has-arrow">
-            <div class="parent-icon"><i class="bx bx-category"></i>
+            <div class="parent-icon"><i class="fa-solid fa-image"></i>
             </div>
             <div class="menu-title">Banner Manage</div>
         </a>
@@ -332,7 +332,7 @@
 
 
 
-    <li class="menu-label">Charts & Maps</li>
+    <!-- <li class="menu-label">Charts & Maps</li>
     <li>
         <a class="has-arrow" href="javascript:;">
             <div class="parent-icon"><i class="bx bx-line-chart"></i>
@@ -347,9 +347,9 @@
             <li> <a href="charts-highcharts.html"><i class="bx bx-right-arrow-alt"></i>Highcharts</a>
             </li>
         </ul>
-    </li>
+    </li> -->
 
-    <li>
+    <!-- <li>
         <a href="https://codervent.com/rukada/documentation/index.html" target="_blank">
             <div class="parent-icon"><i class="bx bx-folder"></i>
             </div>
@@ -362,7 +362,7 @@
             </div>
             <div class="menu-title">Support</div>
         </a>
-    </li>
+    </li> -->
     </ul>
     <!--end navigation-->
 </div>

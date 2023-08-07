@@ -19,7 +19,7 @@ class CartController extends Controller
     {
 
         $product = Product::findOrFail($id);
-        // dd($product);
+        //dd($product);
 
 
         if ($product->discount_price == NULL || $product->discount_price == 0 || $product->discount_price == '') {
@@ -68,7 +68,7 @@ class CartController extends Controller
     {
 
         $product = Product::findOrFail($id);
-
+        //dd($product);
         if ($product->discount_price == NULL) {
 
             Cart::add([
@@ -85,7 +85,7 @@ class CartController extends Controller
                     'vendor' => $request->vendor,
                 ],
             ]);
-
+           //dd(cart::content());
             return response()->json(['success' => 'Successfully Added on Your Cart']);
         } else {
 
@@ -140,11 +140,11 @@ class CartController extends Controller
     // End Method
     public function GetCartProduct()
     {
-
-        $carts = Cart::content();
+       // $carts = Cart::all();
+       $carts = Cart::content();
         $cartQty = Cart::count();
         $cartTotal = Cart::total();
-
+        //echo "<pre>";print_r($carts);
         return response()->json(array(
             'carts' => $carts,
             'cartQty' => $cartQty,
