@@ -17,7 +17,7 @@ use Image;
 use File;
 
 
-
+set_time_limit(180);
 class ProductController extends Controller
 {
     public function AllProduct()
