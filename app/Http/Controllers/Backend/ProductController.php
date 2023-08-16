@@ -10,6 +10,7 @@ use App\Models\SubCategory;
 use App\Models\MultiImg;
 use App\Models\Brand;
 use App\Models\Product;
+use App\Models\offer;
 use App\Models\User;
 use App\Models\ProductByColor;
 use Carbon\Carbon;
@@ -41,7 +42,7 @@ class ProductController extends Controller
     public function StoreProduct(Request $request)
     {
 
-// echo'<pre>';print_r($request->all());die;
+        // echo'<pre>';print_r($request->all());die;
         $image = $request->file('product_thambnail');
 
         $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
@@ -89,9 +90,9 @@ class ProductController extends Controller
         foreach ($images as $img) {
             $make_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
             $directory = public_path('upload/products/multi-image/' . $product_id . '/' . strtolower($request->product_color));
-                    File::makeDirectory($directory, $mode = 0755, true, true);
-            Image::make($img)->resize(300, 300)->save('upload/products/multi-image/'.$product_id.'/'.strtolower($request->product_color).'/' . $make_name);
-            $uploadPath = 'upload/products/multi-image/'.$product_id.'/'.strtolower($request->product_color).'/' . $make_name;
+            File::makeDirectory($directory, $mode = 0755, true, true);
+            Image::make($img)->resize(300, 300)->save('upload/products/multi-image/' . $product_id . '/' . strtolower($request->product_color) . '/' . $make_name);
+            $uploadPath = 'upload/products/multi-image/' . $product_id . '/' . strtolower($request->product_color) . '/' . $make_name;
             MultiImg::insert([
                 'product_id' => $product_id,
                 'photo_name' => $uploadPath,
@@ -354,18 +355,18 @@ class ProductController extends Controller
 
     public function StoreProductByColor(Request $request)
     {
-   
+
         $data = $request->all();
         // dd($data);
         $product_id = $data['id'];
         $product = Product::find($product_id);
-    
+
         foreach ($data['prod'] as $key => $value) {
             if (isset($value["product_by_thambnail"])) {
-   
+
                 // Store main product thumbnail
                 $image = $value["product_by_thambnail"];
-  
+
                 $name_gen = hexdec(uniqid()) . '.webp';
                 Image::make($image)->encode('webp', 90)->resize(300, 300)->save(public_path('upload/products/thambnail/' . $name_gen));
 
@@ -417,7 +418,7 @@ class ProductController extends Controller
                     MultiImg::insert([
                         'product_id' => $prod_id,
                         'photo_name' => $uploadPath,
-                        
+
                         'created_at' => Carbon::now(),
                     ]);
                 }
@@ -432,4 +433,210 @@ class ProductController extends Controller
 
         return redirect()->route('all.product')->with($notification);
     }
+
+
+    // Offers Section Start 
+    public function AllOffers()
+    {
+        $offers = Offer::latest()->get();
+        return view('backend.offers.offer_all', compact('offers'));
+    }
+    public function AddOffers()
+    {
+        return view('backend.offers.offer_add');
+    }
+
+    // End Method
+    public function StoreOffer(Request $request)
+    {
+
+        // echo'<pre>';print_r($request->all());die;
+        $image = $request->file('offers_image');
+
+        $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+        Image::make($image)->encode('webp', 90)->resize(300, 300)->save('upload/offers/' . $name_gen);
+        $path = public_path().'upload/offers/';
+        File::makeDirectory($path, $mode = 0777, true, true);
+        $save_url = 'upload/offers/' . $name_gen;
+
+        $offer_id = Offer::insertGetId([
+
+        
+            'offers_name' => $request->offers_name,
+            'offers_slug' => strtolower(str_replace(' ', '-', $request->offers_name)),
+            'offers_image' => $save_url,
+            'status' => 1,
+            'created_at' => Carbon::now(),
+
+        ]);
+
+
+        /// Multiple Image Upload From her //////
+        // $images = $request->file('multi_img');
+        // echo '<pre>';print_R($images);die;
+        // foreach ($images as $img) {
+            // $make_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
+            // $directory = public_path('upload/products/multi-image/' . $product_id . '/' . strtolower($request->product_color));
+            // File::makeDirectory($directory, $mode = 0755, true, true);
+            // Image::make($img)->resize(300, 300)->save('upload/products/multi-image/' . $product_id . '/' . strtolower($request->product_color) . '/' . $make_name);
+            // $uploadPath = 'upload/products/multi-image/' . $product_id . '/' . strtolower($request->product_color) . '/' . $make_name;
+            // MultiImg::insert([
+            //     'product_id' => $product_id,
+            //     'photo_name' => $uploadPath,
+            //     'created_at' => Carbon::now(),
+
+            // ]);
+        // } // End Method 
+        $notification = array(
+            'message' => 'Offers Inserted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.offers')->with($notification);
+    }
+
+    // /// Multiple Image Upload From her //////
+    // function processMultiImages($request)
+    // {
+    //     $images = $request->file('multi_imgs');
+    //     $img = MultiImg::find($request->multi_img_id);
+
+    //     foreach ($images as $img) {
+    //         $make_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
+    //         \Image::make($img)->resize(300, 300)->save('upload/products/multi-image/' . $make_name);
+    //         $uploadPath = 'upload/products/multi-image/' . $make_name;
+
+    //         $img->photo_name = $uploadPath;
+    //         $img->save();
+
+            //     MultiImg::insert([
+
+            //     'product_id' => $img->product_id,
+            //     'photo_name' => $uploadPath,
+            //     'created_at' => Carbon::now(), 
+
+            // ]); 
+        // } // end foreach
+
+        /// End Multiple Image Upload From her //////
+
+    //     $notification = array(
+    //         'message' => 'Product Inserted Successfully',
+    //         'alert-type' => 'success'
+    //     );
+
+    //     return redirect()->route('all.product')->with($notification);
+    // }
+
+
+    // end foreach
+
+    /// End Multiple Image Upload From her //////
+
+
+    public function EditOffer($id)
+    {
+        $offers = Offer::findOrFail($id);
+        return view('backend\offers\offer_edit', compact('offers'));
+    }
+     // End Method 
+
+     public function UpdateOffer(Request $request){
+
+        $offer_id = $request->id;
+        $old_img = $request->old_image;
+
+        if ($request->file('offers_image')) {
+
+            $image = $request->file('offers_image');
+                $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                $image->move('upload/offers/', $name_gen);
+                $save_url = 'upload/offers/' . $name_gen;
+
+
+        if (file_exists($old_img)) {
+        unlink($old_img);
+        }
+
+        Offer::findOrFail($offer_id)->update([
+            'offers_name' => $request->offers_name,
+            'offers_slug' => strtolower(str_replace(' ', '-',$request->offers_name)),
+            'offers_image' => $save_url, 
+        ]);
+
+        $notification = array(
+            'message' => 'Offers Updated with image Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.offers')->with($notification); 
+
+        } else {
+
+            Offer::findOrFail($offer_id)->update([
+            'offers_name' => $request->offers_name,
+            'offers_slug' => strtolower(str_replace(' ', '-',$request->offers_name)), 
+        ]);
+
+        $notification = array(
+            'message' => 'Offers Updated without image Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.offers')->with($notification); 
+
+        } // end else
+
+        }// End Method
+
+        public function OfferInactive($id)
+        {
+    
+            Offer::findOrFail($id)->update(['status' => 0]);
+            $notification = array(
+                'message' => 'Product Inactive',
+                'alert-type' => 'success'
+            );
+    
+            return redirect()->back()->with($notification);
+        }
+        // End Method 
+    
+    
+        public function OfferActive($id)
+        {
+    
+            Offer::findOrFail($id)->update(['status' => 1]);
+            $notification = array(
+                'message' => 'Product Active',
+                'alert-type' => 'success'
+            );
+    
+            return redirect()->back()->with($notification);
+        }
+        // End Method 
+    
+
+
+        public function DeleteOffer($id){
+
+              
+            // $img = $brand->brand_image;
+            // Storage::delete($img)
+
+            $offers = Offer::findOrFail($id);
+            unlink($offers->offers_image);
+            $offers->delete();
+
+            $notification = array(
+                'message' => 'Offers Deleted Successfully',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->back()->with($notification); 
+
+            }// End Method 
+
+
+    // Offers Section End
 }

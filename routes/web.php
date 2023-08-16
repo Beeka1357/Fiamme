@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubSubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\OfferController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\OrderController;
@@ -193,6 +194,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/store/product', 'StoreProduct')->name('store.product');
         Route::get('/edit/product/{id}', 'EditProduct')->name('edit.product');
 
+       
         Route::post('/update/product/{id}', 'UpdateProduct')->name('update.product');
         Route::post('/update/product/thambnail', 'UpdateProductThambnail')->name('update.product.thambnail');
         Route::post('/update/product/multiimage', 'UpdateProductMultiimage')->name('update.product.multiimage');
@@ -209,8 +211,21 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         // Add Product Colors
         Route::get('product/add/color/{id}', 'AddProductByColor')->name('product.add.color');
         Route::post('/store/product/color', 'StoreProductByColor')->name('store.product.color');
-    });
 
+         // Offers Section Start
+         Route::get('/all/offers', 'AllOffers')->name('all.offers');
+         Route::get('/add/offer', 'AddOffers')->name('add.offers');
+         Route::post('/store/offers', 'StoreOffer')->name('store.offer');
+         Route::get('/edit/offer/{id}', 'EditOffer')->name('edit.offer');
+         Route::post('/update/offer', 'UpdateOffer')->name('update.offer');
+
+         Route::get('/offer/inactive/{id}', 'OfferInactive')->name('offer.inactive');
+         Route::get('/offer/active/{id}', 'OfferActive')->name('offer.active');
+         Route::get('/delete/offer/{id}', 'DeleteOffer')->name('delete.offer');
+         // End Offers Section 
+    });
+ 
+    
 
 
     // Slider All Route 

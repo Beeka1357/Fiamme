@@ -13,6 +13,8 @@
 <!--End banners-->
 
 @include('frontend.home.home_new_product')
+
+@include('frontend.home.home_offers')
 <!--Products Tabs-->
 
 

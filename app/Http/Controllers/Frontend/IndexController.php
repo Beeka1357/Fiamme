@@ -16,10 +16,10 @@ class IndexController extends Controller
 
      public function Index()
      {
-          $cat = Category::all();
+          $cat = Category::where('category_name',1)->get();
           $prod = [];
           foreach ($cat as $c) {
-               $prod[$c->category_name] =  Product::where('status', 1)->where('category_id', $c->id)->orderBy('id', 'DESC')->limit(5)->get();
+               $prod[$c->category_name] =  Product::where('status', 1)->where('category_id', $c->id)->orderBy('id', 'DESC')->limit(1)->get();
 
           }
                          $hot_deals = Product::where('hot_deals', 1)->where('discount_price', '!=', NULL)->orderBy('id', 'DESC')->limit(3)->get();
