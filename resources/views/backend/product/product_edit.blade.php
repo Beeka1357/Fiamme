@@ -151,6 +151,13 @@
 
 	 <div class="row g-3">
 
+     <div class="col-md-6">	
+    <div class="form-check">
+        <input class="form-check-input" name="offer" type="checkbox" value="1" id="flexCheckDefault" {{ $products->offer == 1 ? 'checked' : '' }} >
+			<label class="form-check-label" for="flexCheckDefault"> offer</label>
+		</div>
+	</div>
+
 	 <div class="col-md-6">	
     <div class="form-check">
         <input class="form-check-input" name="hot_deals" type="checkbox" value="1" id="flexCheckDefault" {{ $products->hot_deals == 1 ? 'checked' : '' }} >

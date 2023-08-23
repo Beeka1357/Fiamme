@@ -43,6 +43,13 @@ class ProductController extends Controller
     {
 
         // echo'<pre>';print_r($request->all());die;
+  
+        $offer = '';
+        foreach($request->offer as $o){
+            $offer .= $o . '-';
+        }
+        $offer = rtrim($offer,'-');
+
         $image = $request->file('product_thambnail');
 
         $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
@@ -71,6 +78,7 @@ class ProductController extends Controller
             'short_descp' => $request->short_descp,
             'long_descp' => $request->long_descp,
 
+            'offer'=> $offer,
             'hot_deals' => $request->hot_deals,
             'featured' => $request->featured,
             'special_offer' => $request->special_offer,
@@ -189,6 +197,7 @@ class ProductController extends Controller
             'short_descp' => $request->short_descp,
             'long_descp' => $request->long_descp,
 
+            'offer' => $request->offer,
             'hot_deals' => $request->hot_deals,
             'featured' => $request->featured,
             'special_offer' => $request->special_offer,
@@ -394,6 +403,7 @@ class ProductController extends Controller
                     'short_descp' => $product['short_descp'],
                     'long_descp' => $product['long_descp'],
 
+                    'offer' => $product['offer'],
                     'hot_deals' => $product['hot_deals'],
                     'featured' => $product['featured'],
                     'special_offer' => $product['special_offer'],
@@ -439,6 +449,7 @@ class ProductController extends Controller
     public function AllOffers()
     {
         $offers = Offer::latest()->get();
+            // echo'<pre>';print_r($offers);die;
         return view('backend.offers.offer_all', compact('offers'));
     }
     public function AddOffers()

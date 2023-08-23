@@ -158,8 +158,19 @@
 									<div class="form-group col-12">
 
 										<div class="row g-3">
+@php 
+$offers = \App\Models\Offer::where('status',1)->get();
+@endphp
+@foreach($offers as $offer)
+										<div class="form-group col-md-6">
+												<div class="form-check">
+													<input class="form-check-input" name="offer[]" type="checkbox" value="{{$offer->offers_slug}}" id="">
+													<label class="form-check-label" for="flexCheckDefault"> {{ucwords($offer->offers_name)}}</label>
+												</div>
+											</div>
+@endforeach
 
-											<div class="form-group col-md-6">
+											<!-- <div class="form-group col-md-6">
 												<div class="form-check">
 													<input class="form-check-input" name="hot_deals" type="checkbox" value="1" id="flexCheckDefault">
 													<label class="form-check-label" for="flexCheckDefault"> Hot Deals</label>
@@ -181,15 +192,15 @@
 													<input class="form-check-input" name="special_offer" type="checkbox" value="1" id="flexCheckDefault">
 													<label class="form-check-label" for="flexCheckDefault">Special Offer</label>
 												</div>
-											</div>
+											</div> -->
 
-
+<!-- 
 											<div class="form-group col-md-6">
 												<div class="form-check">
 													<input class="form-check-input" name="special_deals" type="checkbox" value="1" id="flexCheckDefault">
 													<label class="form-check-label" for="flexCheckDefault">Special Deals</label>
 												</div>
-											</div>
+											</div> -->
 
 
 

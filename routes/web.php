@@ -416,7 +416,7 @@ Route::get('/', [IndexController::class, 'Index']);
 Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CatWiseProduct']);
 Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
-// Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
+Route::get('/product/offer/{id}/{slug}', [IndexController::class, 'offerWiseProduct']);
 
 // Product View Modal With Ajax
 

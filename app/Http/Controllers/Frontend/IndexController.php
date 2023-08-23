@@ -10,7 +10,7 @@ use App\Models\MultiImg;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\User;
-
+use App\Models\Offer;
 class IndexController extends Controller
 {
 
@@ -117,6 +117,19 @@ if(count($groupProducts) > 0){
           return view('frontend.product.subcategory_view', compact('products', 'categories', 'breadsubcat', 'newProduct'));
      }
      // End Method 
+
+     public function offerWiseProduct(Request $request, $id, $slug)
+     {
+          $products = Product::where('status', 1)->where('offer', 'LIKE' , '%'.$slug.'%')->orderBy('id', 'DESC')->get();
+          // echo '<pre>';print_r($products);die;
+          $categories = Category::orderBy('category_name', 'ASC')->get();
+
+          $breadsuboffer = Offer::where('id', $id)->first();
+
+          $newProduct = Product::orderBy('id', 'DESC')->limit(3)->get();
+
+          return view('frontend.offer.offer_view', compact('products', 'categories','breadsuboffer', 'newProduct'));
+     }
 
      public function ProductViewAjax($id)
      {

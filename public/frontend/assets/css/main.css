@@ -2373,10 +2373,31 @@ input.qty-val {
   -webkit-transition: 0.2s;
   transition: 0.2s;
 }
+.card-3 {
+  position: relative;
+  /* background: #e03f93e8; */
+  text-align: center;
+  /* border: 1px solid #F4F6FA; */
+  border-radius: 10px;
+  padding: 20px 0px 18px 0px;
+  margin-bottom: 20px;
+  min-height: 180px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
 
 .card-2:hover {
   /* background: #fff; */
   /* border: 1px solid #ec59d6; */
+  -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
+          box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  
+}
+.card-3:hover {
+  /* background: #fff; */
+  border: 1px solid #ec59d6;
   -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
           box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
   -webkit-transition: 0.2s;
@@ -2388,6 +2409,10 @@ input.qty-val {
   text-align: center;
   margin-bottom: 10px;
 }
+.card-3 figure {
+  text-align: center;
+  /* margin-bottom: 10px; */
+}
 
  figure img {
   border-radius: 10px;
@@ -2398,12 +2423,23 @@ input.qty-val {
 .card-2 h6 {
   margin: 0;
 }
+.card-2 h6 {
+  margin: 0;
+}
 
 .card-2 h6 a {
   color: #fff;
 }
 
 .card-2:hover a {
+  color: #fff;
+}
+
+.card-3 h6 a {
+  color: #fff;
+}
+
+.card-3:hover a {
   color: #fff;
 }
 
@@ -9326,7 +9362,7 @@ span.fi-rs-apps {
 
 .widget-category-2 ul li a img {
   max-width: 30px;
-  margin-right: 15px;
+  margin-right: 25px;
 }
 
 .widget-category-2 ul li:hover .dropdown-menu {
@@ -11799,7 +11835,7 @@ footer .hotline img {
     max-width: 1610px;
   }
   .col-lg-1-5 {
-    width: 20%;
+    width: 19%;
   }
   .col-lg-2-5 {
     width: 40%;

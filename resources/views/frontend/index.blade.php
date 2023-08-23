@@ -14,17 +14,18 @@
 
 @include('frontend.home.home_new_product')
 
-@include('frontend.home.home_offers')
+
 <!--Products Tabs-->
 
 
 
 
-@include('frontend.home.home_features_product')
+
+
 <!--End Best Sales-->
 
 
-
+@include('frontend.offer.offer_product')
 
 
 
@@ -164,9 +165,7 @@
 @endforeach -->
 
 
-
-
-
+@include('frontend.home.home_features_product')
 
 
 
