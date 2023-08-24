@@ -19,17 +19,17 @@
 .card-2 {
     /* background: #e03f93e8; */
     /* border: 1px solid #e03f93e8; */
-    width: auto !important;
+    width: 180px !important;
     max-width: 190px;
     min-height: 200px;
     padding: 0px 0;
 }
 .card-3 {
-    background: #e03f93e8;
-    border: 1px solid #e03f93e8;
+    /* background: #e03f93e8;
+    border: 1px solid #e03f93e8; */
     width: auto !important;
-    max-width: 190px;
-    min-height: 200px;
+    max-width: 260px;
+    /* max-height: 350px; */
     padding: 0px 0;
 }
 #carausel-10-columns .slick-track {
@@ -162,7 +162,7 @@ h6,
 
     .carausel-10-columns-cover .carausel-10-columns {
         display: flex;
-        gap: 20px !important;
-        padding-left: 30px !important;
+        gap: 15px !important;
+        padding-left: 46px !important;
     }
     

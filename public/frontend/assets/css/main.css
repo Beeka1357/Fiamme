@@ -2089,7 +2089,7 @@ input.qty-val {
 }
 
 .slider-arrow .slider-btn.slider-next {
-  right: 20px;
+  right: 102px;
 }
 
 .slider-arrow .slider-btn.slider-next i {
@@ -2397,7 +2397,7 @@ input.qty-val {
 }
 .card-3:hover {
   /* background: #fff; */
-  border: 1px solid #ec59d6;
+  /* border: 1px solid #ec59d6; */
   -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
           box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
   -webkit-transition: 0.2s;
@@ -9816,6 +9816,7 @@ footer .hotline img {
 
 .section-padding {
   padding: 25px 0;
+  /* padding-left: 50px; */
 }
 
 .ptb-0 {
